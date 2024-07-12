@@ -5,9 +5,11 @@ const express=require("express");
 const app=express();
 const PORT=process.env.PORT||8080;
 
+//DB connection logic 
 connectDB()
 .then(()=>{
-    app.on("Error",(error)=>{
+    //When the app is activated then in event on if there is an error occured then it terminates the process.
+    app.on("error",(error)=>{
         console.error(error);
         process.exit(1);
     })

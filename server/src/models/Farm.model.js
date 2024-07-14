@@ -13,7 +13,7 @@ const farmSchema=new mongoose.Schema("farm",{
         type:String,
         required:true,
     },
-    condition:{
+    report:{
         type:mongoose.Types.ObjectId,
         ref:'Report'
     }

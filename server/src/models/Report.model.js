@@ -5,15 +5,15 @@ const ReportSchema=new mongoose.Schema("report",{
         type:String,
         required:true,
     },
-    N:{
+    n:{
         type:String,
         required:true,
     },
-    P:{
+    p:{
         type:String,
         required:true,
     },
-    K:{
+    k:{
         type:String,
         required:true,
     },
@@ -25,6 +25,23 @@ const ReportSchema=new mongoose.Schema("report",{
         type:String,
         required:true,
     },
+    ph:{
+        type:String,
+        required:true,
+    },
+    texture:{
+        type:String,
+        required:true,
+    },
+    depth:{
+        type:String,
+        required:true,
+    },
+    climate:{
+        type:String,
+        required:true,
+    },
+    
 })
 
 const Report=mongoose.model('Report',ReportSchema)

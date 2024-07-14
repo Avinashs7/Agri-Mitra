@@ -1,7 +1,7 @@
 const mongoose=require("mongoose")
 
 const IssuesSchema=new mongoose.Schema('issues',{
-    Challenges:{
+    challenges:{
         type:String,
         required:true,
     },
@@ -10,7 +10,7 @@ const IssuesSchema=new mongoose.Schema('issues',{
             type:String,
         }
     ],
-    land:{
+    ownedBy:{
         type:mongoose.Types.ObjectId,
         ref:'Farm'
     }

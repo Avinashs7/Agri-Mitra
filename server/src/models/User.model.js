@@ -25,6 +25,10 @@ const UserSchema=new mongoose.Schema("user",{
     phone:{
         type:String
     },
+    avatar:{
+        type:String,
+        required:true,
+    },
     gender:{
         type:String,
         enum:["M","F","O"],

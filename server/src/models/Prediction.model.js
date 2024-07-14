@@ -9,7 +9,7 @@ const PredictionSchema=new mongoose.Schema("Prediction",{
         type:String,
         required:true
     },
-    land:{
+    ownedBy:{
         type:mongoose.Types.ObjectId,
         ref:'Report'
     }

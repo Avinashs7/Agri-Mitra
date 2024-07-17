@@ -10,7 +10,7 @@ const Otp = () => {
     const [otp, setOtp] = useState("")
     const [loading, setLoading] = useState("")
     const [phone, setPhone] = useState("")
-    const [showOtp, setShowOtp] = useState(false)
+    const [showOtp, setShowOtp] = useState(true)
   return (
     <>
         <div className='h-[95vh] flex flex-col items-center justify-center text-black'>

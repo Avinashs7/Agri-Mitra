@@ -1,4 +1,5 @@
 import './App.css'
+import Navibar from './components/Navibar'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
@@ -11,25 +12,26 @@ function App() {
     {
       path: '/',
       element:<>
-        <Navbar /></>
+        <Navibar />
+      </>
     },
     {
       path: '/login',
       element: <>
-        <Navbar />
+        <Navibar />
         <Login /></>
     },
     {
       path: '/signup',
       element:<>
-        <Navbar />
+        <Navibar />
         <SignUp />
       </>
     },
     {
       path: '/otp',
       element: <>
-        <Navbar />
+        <Navibar />
         <Otp />
       </>
     }

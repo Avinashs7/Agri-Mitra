@@ -23,21 +23,22 @@ const Navbar = () => {
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex flex-shrink-0 items-center">
-                            <img className="rounded-3xl h-12 w-auto" src={logo} alt="Your Company" />
+                            <img className="rounded-full h-14 w-auto" src={logo} alt="We Connect" />
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-4">
-                                <Link to="/" className="rounded-md bg-gray-900 mx-2 px-3 py-2 text-lg font-medium text-white" aria-current="page">Home</Link>
+                                <Link to="/" className="rounded-md bg-gray-900 mx-48 px-3 py-2 text-3xl font-bold text-white" aria-current="page">We Connect</Link>
+                                <Link to="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</Link>
                                 <Link to="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</Link>
                                 <Link to="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</Link>
                                 <Link to="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</Link>
+                                <Link to="/login" className="rounded-md mx-4 px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sign In</Link>
                                 {/* <Link to="/login" className="rounded-md float-right px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sign In</Link> */}
                             </div>
                         </div>
                     </div>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                            <Link to="/login" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sign In</Link>
-                        </div>
+                        {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        </div> */}
                 </div>
             </div>
 

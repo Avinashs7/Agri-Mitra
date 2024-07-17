@@ -6,6 +6,9 @@ import SignUp from './components/SignUp'
 import Otp from './components/Otp'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Landing from './components/Landing'
+import Workflow from './components/Workflow'
+import Vision from './components/Vision'
 
 function App() {
   const router = createBrowserRouter([
@@ -13,6 +16,9 @@ function App() {
       path: '/',
       element:<>
         <Navibar />
+        <Landing />
+        <Workflow />
+        <Vision />
       </>
     },
     {

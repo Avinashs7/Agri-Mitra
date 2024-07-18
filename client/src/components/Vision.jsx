@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const Vision = () => {
+    useEffect(()=>{
+        AOS.init({duration:2000});
+    },[]);
   return (
     <div>
       <div className="bg-gray-900 pt-20 pb-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:text-center">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-300 sm:text-6xl">Vision and Mission</h1>
+                <h1 className="text-4xl font-bold tracking-tight text-gray-300 sm:text-6xl" data-aos='zoom-in'>Vision and Mission</h1>
             </div>
             <div className="mx-auto mt-16 sm:mt-20 lg:mt-24 lg:max-w-4xl">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-                <div className="relative border border-solid border-white">
+                <div className="relative border border-solid border-white" data-aos='zoom-in'>
                     <dt className="text-center text-2xl font-semibold leading-7 text-gray-300 pt-5">Vision</dt>
                     <dd className="mt-2 text-base leading-7 pl-7 pr-5 text-white">Our vision is to lead a revolution in agriculture by harnessing
                         the power of machine learning and data analytics to enable farmers to make informed decisions that optimize crop yield
@@ -18,7 +23,7 @@ const Vision = () => {
                         food security and contribute to the well-being of our planet, fostering a harmonious relationship between innovation, 
                         nature, and agriculture.</dd>
                 </div>
-                <div className="relative border border-solid border-white">
+                <div className="relative border border-solid border-white" data-aos='zoom-in'>
                     <dt className="text-center text-2xl font-semibold leading-7 text-gray-300 pt-5">Mission</dt>
                     <dd className="mt-2 text-base leading-7 text-white pl-7 pr-5 pb-5">Our mission is to empower farmers with state-of-the-art machine 
                         learning models and data-driven insights, helping them select the most suitable crops based on detailed soil nutrient 

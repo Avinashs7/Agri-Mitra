@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const Landing = () => {
+  useEffect(() =>{
+    AOS.init({duration: 1000});
+  }, []);
   return (
     <div>
         <div className="relative isolate px-6 pt-14 lg:px-8 bg-gradient-to-tr from-[#242527] to-[#040303] bg-opacity-25">
-            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-28">
+            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-28" data-aos="fade-up">
             <div className="text-center">
                 <h1 className="text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl">Farming Meets Innovation: Predict Your Best Crop
                 </h1>

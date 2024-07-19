@@ -3,6 +3,9 @@ const ApiResponse=require("../utils/ApiResponse.js")
 const ApiError=require("../utils/ApiError.js")
 const AsyncHandler=require("../utils/asyncHandler.js")
 const uploadToCloudinary=require("../utils/cloudinary.js")
+const crypto=require("crypto")
+const Otp=require("../models/Otp.model.js")
+const {sendValidationMail}=require("../utils/nodemailer.js")
 
 //helper function to generate refresh token and access token for the valid user
 const generateAccessAndRefereshTokens = async(userId) =>{
@@ -20,6 +23,16 @@ const generateAccessAndRefereshTokens = async(userId) =>{
 }
 
 
+const generateOtp=async(userId,length=6)=>{
+    const otp = crypto.randomBytes(length)
+    // Convert the bytes to a hexadecimal string
+    .toString('hex')
+    // Extract only the numeric characters
+    .replace(/\D/g, '');
+    // Ensure the OTP has the desired length by truncating or padding with zeros if necessary
+    const generatedOtp = otp.substring(0, length).padEnd(length, '0');
+    sendValidationMail(userId,generatedOtp);
+}
 
 const registerUser=AsyncHandler(async (req,res)=>{
     const {
@@ -61,6 +74,7 @@ const registerUser=AsyncHandler(async (req,res)=>{
         gender
     })
     if(!user)throw new ApiError(500,"Server error while creating new user");
+    generateOtp(user._id);
     return res.status(201).json(new ApiResponse(200,user,"User created successfully"));
 })
 
@@ -78,6 +92,8 @@ const loginUser=AsyncHandler(async(req,res)=>{
     }
     const validUser=await user.checkPassword(password);
     if(validUser){
+        if(validUser.verified===false)
+            throw new ApiError(405,"User email is not verified");
         const {accessToken,refreshToken}=await generateAccessAndRefereshTokens(user._id);
         const data=await User.findById(user._id).select("-password -refreshToken").lean();
         const options = {
@@ -95,7 +111,28 @@ const loginUser=AsyncHandler(async(req,res)=>{
     }
 })
 
+const verifyOtp=AsyncHandler(async(req,res)=>{
+    const id=req.params;
+    const {otp}=req.body;
+    const otpDoc=await Otp.findOne({userId:id});
+    if(new Date(otpDoc.createdAt).getTime()+5*60*1000 > Date.now())
+    {
+        if(otp===otpDoc.otp){
+            const user=await User.findById(id);
+            user.verified=true;
+            await user.save(); 
+            await Otp.deleteMany({userId:id});
+            return res.status(200).send(new ApiResponse(200,null,"Email Verified"));
+        }
+        else{
+            return res.status(403,null,"Wrong Otp");
+        }
+    }
+
+});
+
 module.exports={
     registerUser,
     loginUser,
+    verifyOtp
 }

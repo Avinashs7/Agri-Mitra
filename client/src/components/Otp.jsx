@@ -5,12 +5,25 @@ import { CgSpinner } from 'react-icons/cg'
 import { BsShieldLockFill, BsTelephoneFill } from 'react-icons/bs'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { useLocation } from 'react-router-dom'
 
 const Otp = () => {
     const [otp, setOtp] = useState("")
     const [loading, setLoading] = useState("")
     const [phone, setPhone] = useState("")
     const [showOtp, setShowOtp] = useState(true)
+    const location=useLocation();
+    const id=location.state;
+    const verifyOtp=async(e)=>{
+        e.preventDeault();
+        await axios.post(`http://localhost:8000/user/verify/${id}`,{otp:otp})
+        .then((data)=>{
+            console.log("verified");
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    }
   return (
     <>
         <div className='h-[95vh] flex flex-col items-center justify-center text-black'>
@@ -31,7 +44,7 @@ const Otp = () => {
                             {
                                 loading && <CgSpinner size={20} className='animate-spin'/>
                             }
-                            <span>Verify</span>
+                            <button onClick={verifyOtp}>Verify</button>
                             </button>
                         </div>
                     </form>

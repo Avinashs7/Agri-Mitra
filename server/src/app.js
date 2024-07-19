@@ -1,12 +1,13 @@
 const express=require("express");
+const app=express();
 const cookieParser=require("cookie-parser")
 const cors=require("cors");
 
 const ApiResponse=require("./utils/ApiResponse")
 
-const app=express();
 
 //Middlewares
+
 
 //middleware to establish the request connection from other port or origin 
 app.use(cors({
@@ -21,11 +22,17 @@ app.use(express.urlencoded({extended:false,limit:"16kb"}));
 //static files accessible permission middleware
 app.use(express.static("public"))
 
+const userRouter=require("./routes/user.routes")
+app.use("/user",userRouter)
+
+const issueRouter=require("./routes/Issues.routes")
+app.use("/issue",issueRouter)
+
 //The last middlewaree to be used, because this is a general error handling middleware if the response isn't ended anywhere the above it will return the error here
 app.use((error,req,res,next)=>{
     console.error(error)
-    const response=ApiResponse(error.statuscode||500,null,error.message||"Internal Server error")
+    const response=new ApiResponse(error.statuscode||500,null,error.message||"Internal Server error")
     res.status(response.statuscode).json(response)
 })
 
-module.exports={app};
+module.exports=app;

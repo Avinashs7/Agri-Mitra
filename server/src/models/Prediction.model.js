@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const PredictionSchema=new mongoose.Schema("Prediction",{
+const PredictionSchema=new mongoose.Schema({
     crop:{
         type:String,
         required:true,

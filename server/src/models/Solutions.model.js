@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const SolutionSchema=new mongoose.Schema("Solution",{
+const SolutionSchema=new mongoose.Schema({
     answer:{
         type:String,
         required:true,

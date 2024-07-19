@@ -7,7 +7,7 @@ v2.config({
     api_secret:process.env.CLOUDINARY_API_SECRET,
 })
 
-export const uploadToCloudinary=async function(localPath){
+const uploadToCloudinary=async function(localPath){
     try{
         if(!localPath)return null;
         const response=await v2.uploader.upload(localPath,{
@@ -21,3 +21,5 @@ export const uploadToCloudinary=async function(localPath){
         return null;
     }
 }
+
+module.exports=uploadToCloudinary

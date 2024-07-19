@@ -2,7 +2,7 @@ const mongoose=require("mongoose")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 
-const UserSchema=new mongoose.Schema("user",{
+const UserSchema=new mongoose.Schema({
     email:{
         type:String,
         required:true,
@@ -32,6 +32,9 @@ const UserSchema=new mongoose.Schema("user",{
     gender:{
         type:String,
         enum:["M","F","O"],
+    },
+    refreshToken:{
+        type:String,
     }
 },{
     timestamps:true

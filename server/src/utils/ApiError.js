@@ -3,7 +3,7 @@
  *Many where writing the error message with the same format is difficult but this is to define the template and send the object of it
  *It extends Error class provided by javascript
  **/
-export class ApiError extends Error{
+class ApiError extends Error{
     constructor(statuscode,message="something went wrong",errors=[],stack=""){
         super(message)
         this.statuscode=statuscode
@@ -12,6 +12,7 @@ export class ApiError extends Error{
         if(stack)
             this.stack=stack
         else
-            Error.captureStackTrace(this.this.constructor)
+            Error.captureStackTrace(this.constructor)
     }
 }
+module.exports=ApiError

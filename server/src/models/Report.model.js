@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const ReportSchema=new mongoose.Schema("report",{
+const ReportSchema=new mongoose.Schema({
     crop:{
         type:String,
         required:true,

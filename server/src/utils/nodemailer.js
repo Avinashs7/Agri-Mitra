@@ -3,6 +3,10 @@ const User = require("../models/User.model");
 const ApiError = require("./ApiError");
 const Otp=require("../models/Otp.model")
 
+/**
+ * Nodemailer transporter is to config the mail carrier  
+ * This is used to send the mail
+ */
 const tranporter=nodemailer.createTransport({
     service:'gmail',
     auth:{
@@ -11,9 +15,11 @@ const tranporter=nodemailer.createTransport({
     }
 })   
 
+/**
+ * The method to send the otp in mail for email verification
+ */
 const sendValidationMail=async(userId,otp)=>{
     const user =await User.findById(userId).select("_id email");
-    // console.log(user)
     const mailOptions={
         from:process.env.EMAIL,
         to:user.email,

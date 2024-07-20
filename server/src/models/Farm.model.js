@@ -1,5 +1,10 @@
 const mongoose=require("mongoose")
 
+/**
+ * Model to handle the farm details of the farmer 
+ * Generally stores all different farms where all sensors are stored
+ * Which is to be farmed smartly
+ */
 const farmSchema=new mongoose.Schema({
     area:{
         type:Number,

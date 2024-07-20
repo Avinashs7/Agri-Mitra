@@ -2,6 +2,9 @@ const mongoose=require("mongoose")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 
+/**
+ * Model to store the user details 
+ */
 const UserSchema=new mongoose.Schema({
     email:{
         type:String,
@@ -53,10 +56,13 @@ UserSchema.pre("save",async function(next){
 })
 
 //Method to inject in the database similar to stored procedure
+
+//It returns the true or false based on the password. Since the stored password is hashed direct string match won't yield the result hence it is compared using the package bcrypt
 UserSchema.methods.checkPassword=async function(password){
     return await bcrypt.compare(password,this.password);
 }
 
+//Method to generate the access token
 UserSchema.methods.generateAccessToken=function (){
     return jwt.sign({
         _id:this._id,
@@ -68,6 +74,7 @@ UserSchema.methods.generateAccessToken=function (){
     })
 }
 
+//Method to generate the refresh token same as the access token logic but the expiry period is more
 UserSchema.methods.generateRefreshToken=function (){
     return jwt.sign({
         _id:this._id,

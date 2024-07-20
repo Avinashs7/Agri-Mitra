@@ -1,5 +1,8 @@
 const mongoose=require("mongoose")
 
+/**
+ * The model is used to store the prediction the crop and the it's advantages 
+ */
 const PredictionSchema=new mongoose.Schema({
     crop:{
         type:String,

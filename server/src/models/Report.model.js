@@ -1,5 +1,9 @@
 const mongoose=require("mongoose")
 
+/**
+ * This is to save the current condition of the farm 
+ * It has all the factors which affect the soil fertility
+ */
 const ReportSchema=new mongoose.Schema({
     crop:{
         type:String,

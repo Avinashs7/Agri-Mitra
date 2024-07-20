@@ -6,6 +6,8 @@ const uploadToCloudinary=require("../utils/cloudinary.js")
 const crypto=require("crypto")
 const Otp=require("../models/Otp.model.js")
 const {sendValidationMail}=require("../utils/nodemailer.js")
+const mongoose=require("mongoose")
+const asyncHandler = require("../utils/asyncHandler.js")
 
 //helper function to generate refresh token and access token for the valid user
 const generateAccessAndRefereshTokens = async(userId) =>{
@@ -22,6 +24,16 @@ const generateAccessAndRefereshTokens = async(userId) =>{
     }
 }
 
+//Helper function to handle the deletion of the OTP's after 5 minute. This is a safety function as the deletion is already handled even the mongoose schema also.
+const deleteOtp=async()=>{
+    const expirationTime = new Date(Date.now() - 5 * 60 * 1000); // 5 minutes ago
+    try {
+        await Otp.deleteMany({ createdAt: { $lt: expirationTime } });
+        // console.log('Expired OTPs deleted');
+    } catch (err) {
+        console.error('Error deleting expired OTPs:', err);
+    }
+}
 
 const generateOtp=async(userId,length=6)=>{
     const otp = crypto.randomBytes(length)
@@ -112,9 +124,11 @@ const loginUser=AsyncHandler(async(req,res)=>{
 })
 
 const verifyOtp=AsyncHandler(async(req,res)=>{
-    const id=req.params;
+    const id=new mongoose.Types.ObjectId(req.params?.id);
     const {otp}=req.body;
     const otpDoc=await Otp.findOne({userId:id});
+    if(!otpDoc)
+        throw new ApiError(404,"OTP expired")
     if(new Date(otpDoc.createdAt).getTime()+5*60*1000 > Date.now())
     {
         if(otp===otpDoc.otp){
@@ -131,8 +145,19 @@ const verifyOtp=AsyncHandler(async(req,res)=>{
 
 });
 
+const getUser=asyncHandler(async(req,res)=>{
+    const user=req.user;
+    const userDetails=await User.findOne({_id:user._id}).select("-password").lean()
+    if(!userDetails){
+        throw new ApiError(402,"No user found");
+    }
+    return res.status(200).send(new ApiResponse(200,{accessToken:"",...userDetails},"user details sent"));
+})
+
 module.exports={
     registerUser,
     loginUser,
-    verifyOtp
+    verifyOtp,
+    deleteOtp,
+    getUser,
 }

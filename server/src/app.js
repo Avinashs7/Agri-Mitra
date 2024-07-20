@@ -42,4 +42,7 @@ app.use((error,req,res,next)=>{
     res.status(response.statuscode).json(response)
 })
 
+//invoke the cron-jobs
+require("./utils/cronJobs")
+
 module.exports=app;

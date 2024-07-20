@@ -18,8 +18,8 @@ const SignUp = () => {
             'Content-Type': 'multipart/form-data',
           }})
         .then((data)=>{
-            
-            navigate("/otp",{state:data?.data?._id});
+            console.log(data?.data?.data)
+            navigate("/otp",{state:{id:data?.data?.data?._id}});
         })
         .catch((err)=>{
             console.error(err);

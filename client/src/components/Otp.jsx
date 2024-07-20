@@ -5,7 +5,8 @@ import { CgSpinner } from 'react-icons/cg'
 import { BsShieldLockFill, BsTelephoneFill } from 'react-icons/bs'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Otp = () => {
     const [otp, setOtp] = useState("")
@@ -13,16 +14,19 @@ const Otp = () => {
     const [phone, setPhone] = useState("")
     const [showOtp, setShowOtp] = useState(true)
     const location=useLocation();
-    const id=location.state;
+    const state=location.state;
+    const navigate=useNavigate();
     const verifyOtp=async(e)=>{
-        e.preventDeault();
-        await axios.post(`http://localhost:8000/user/verify/${id}`,{otp:otp})
-        .then((data)=>{
-            console.log("verified");
-        })
-        .catch((err)=>{
-            console.error(err);
-        })
+        e.preventDefault();
+        if(state?.id!==undefined){
+            await axios.post(`http://localhost:8000/user/verify/${state?.id}`,{otp:otp})
+            .then(()=>{
+                navigate("/login");
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        }
     }
   return (
     <>
@@ -40,11 +44,11 @@ const Otp = () => {
                             <label className='font-bold text-2xl text-black text-center my-2'>Enter your OTP</label>
                             <OtpInput OTPLength={6} otpType='number' disabled={false} autofocus className='otp-container my-3   ' value={otp} onChange={setOtp}>
                             </OtpInput>
-                            <button className='bg-emerald-600 w-full my-4 flex gap-1 items-center justify-center py-3 text-white rounded-lg'>
+                            <button type="submit" className='bg-emerald-600 w-full my-4 flex gap-1 items-center justify-center py-3 text-white rounded-lg' onClick={verifyOtp}>
                             {
                                 loading && <CgSpinner size={20} className='animate-spin'/>
                             }
-                            <button onClick={verifyOtp}>Verify</button>
+                            <span>Verify</span>
                             </button>
                         </div>
                     </form>

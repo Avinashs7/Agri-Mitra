@@ -3,7 +3,7 @@ import React from 'react'
 import logo from '../images/Logo.jpg'
 import { Link } from 'react-router-dom'
 
-const Navibar = () => {
+const Navibar = ({user}) => {
   return (
     <div>
       <header className="bg-gray-900">
@@ -18,9 +18,15 @@ const Navibar = () => {
                 <Link href="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact Us</Link>
                 <Link href="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Company</Link>
             </div>
+            {user?
+              <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                <p className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{user}</p>
+              </div>
+            :
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                 <Link to="/login" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Log in <span aria-hidden="true">&rarr;</span></Link>
             </div>
+            }
         </nav>
   {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
   <div className="lg:hidden" role="dialog" aria-modal="true">

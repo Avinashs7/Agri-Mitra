@@ -13,7 +13,7 @@ const tranporter=nodemailer.createTransport({
 
 const sendValidationMail=async(userId,otp)=>{
     const user =await User.findById(userId).select("_id email");
-    console.log(user)
+    // console.log(user)
     const mailOptions={
         from:process.env.EMAIL,
         to:user.email,

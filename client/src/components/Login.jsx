@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import axios from 'axios';
 
-const Login = () => {
+const Login = ({setUser}) => {
     const [loginDetails,setLoginDetails]=useState({});
+    const navigate=useNavigate();
     const loginUser=async(e)=>{
         e.preventDefault();
-        await axios.post(`${import.meta.env.SERVER_URL}/user/login`,loginDetails)
-        .then((data)=>{
-            const userData=data?.data?.user;
-            setUser(userData.fullName,userData.lastName);
-            localStorage.setItem("accessToken",data?.data?.accessToken);
-            localStorage.setItem("accessToken",data?.data?.refreshToken);
-            setLogin(true);
-        })
-        .catch((err)=>{
+        try{
+            const data=await axios.post("http://localhost:8000/user/login",loginDetails)
+            const userData=data?.data?.data;
+            // console.log(userData?.accessToken)
+            const fullName=userData?.firstName+" "+userData?.lastName;
+            setUser(fullName);
+            localStorage.setItem("user",fullName);
+            localStorage.setItem("accessToken",userData?.accessToken);
+            navigate("/");
+        }
+        catch(err){
             console.error(err);
-        })
+        }
     }
     const updateLoginDetails=(e)=>{
         setLoginDetails({...loginDetails,[e.target.name]:e.target.value});

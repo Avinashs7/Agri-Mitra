@@ -9,13 +9,24 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Landing from './components/Landing'
 import Workflow from './components/Workflow'
 import Vision from './components/Vision'
+import { useEffect, useState } from 'react'
+
 
 function App() {
+  const [user,setUser]=useState();
+  useEffect(()=>{
+    if(localStorage.getItem("accessToken")===null){
+      localStorage.clear();
+    }
+    if(!user && localStorage.getItem("user")){
+      setUser(localStorage.getItem("user"));
+    }
+  },[])
   const router = createBrowserRouter([
     {
       path: '/',
       element:<>
-        <Navibar />
+        <Navibar user={user}/>
         <Landing />
         <Workflow />
         <Vision />
@@ -24,20 +35,20 @@ function App() {
     {
       path: '/login',
       element: <>
-        <Navibar />
-        <Login /></>
+        <Navibar user={user}/>
+        <Login setUser={setUser}/></>
     },
     {
       path: '/signup',
       element:<>
-        <Navibar />
+        <Navibar user={user}/>
         <SignUp />
       </>
     },
     {
       path: '/otp',
       element: <>
-        <Navibar />
+        <Navibar value={user}/>
         <Otp />
       </>
     }

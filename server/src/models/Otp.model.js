@@ -8,9 +8,12 @@ const OtpSchema=new mongoose.Schema({
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now,
+        expires:'5m',
     }
-},{
-    timestamps:true,
 });
 
 const Otp=mongoose.model("Otp",OtpSchema);

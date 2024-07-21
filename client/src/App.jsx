@@ -10,6 +10,8 @@ import Landing from './components/Landing'
 import Workflow from './components/Workflow'
 import Vision from './components/Vision'
 import { useEffect, useState } from 'react'
+import Farms from './components/Farms'
+import FarmModal from './components/FarmModal'
 
 
 function App() {
@@ -51,6 +53,13 @@ function App() {
       element: <>
         <Navbar value={user}/>
         <Otp />
+      </>
+    },
+    {
+      path: '/farms',
+      element : <>
+      <Navbar value={user} />
+      <Farms />
       </>
     }
   ])

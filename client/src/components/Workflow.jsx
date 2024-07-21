@@ -8,7 +8,7 @@ const Workflow = () => {
 
   return (
     <div>
-        <div className="text-center" data-aos='flip-right'>
+        <div className="text-center bg-gray-300" data-aos='flip-right'>
         <h1 className="text-4xl pt-32 pb-20 font-bold tracking-tight text-gray-900 sm:text-6xl">What we Do?</h1>
             <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
                 <ol className='text-xl pl-40 pr-40 pb-44 leading-10 list-disc text-justify'>

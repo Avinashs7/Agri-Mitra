@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineMail } from "react-icons/md";
-import { BsGenderAmbiguous } from "react-icons/bs";
 import { FaUserAlt, FaLock, FaPhoneAlt } from "react-icons/fa";
 import axios from 'axios'
 
@@ -31,7 +30,7 @@ const SignUp = () => {
     }
   return (
     <div className='h-[90vh] flex flex-col items-center justify-center bg-background bg-repeat-round'>
-        <div className='h-[550px] bg-blue-600/20 border border-blue-300 backdrop-blur-lg px-6 w-96   '>
+        <div className='h-[600px] bg-blue-600/20 border border-blue-300 backdrop-blur-lg px-6 w-96   '>
             <div>
                 <h1 className='text-3xl font-bold pb-6 pt-6 text-center text-white'>Sign Up</h1>
                 <form className='flex flex-col items-center' action='' encType="multipart/form-data">
@@ -62,7 +61,6 @@ const SignUp = () => {
                             <option value='F'>Female</option>
                             <option value='O'>Others</option>
                         </select><br></br>
-                        <BsGenderAmbiguous className='absolute top-[35%] right-3 text-white'/>
                         </div >
                     <div className='w-full relative'>
                         <input type='password' name='password' className='border border-gray-300 w-full rounded-full px-4 py-2 my-2 bg-transparent' placeholder='Password' onChange={updateSignUpDetails}/>

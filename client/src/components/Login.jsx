@@ -44,9 +44,6 @@ const Login = ({setUser}) => {
                     <span>Do not have an account? <Link to='/signup' className='text-blue-400'>Sign Up</Link></span>
                 </form>
             </div> 
-
-            {/* Registration Form */}
-            
         </div>
     </div>
   )

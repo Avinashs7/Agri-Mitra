@@ -16,7 +16,7 @@ const Navibar = ({user}) => {
                 <Link to="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</Link>
                 <Link href="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</Link>
                 <Link href="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact Us</Link>
-                <Link href="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Farms</Link>
+                <Link to="/farms" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Farms</Link>
             </div>
             {user?
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -43,11 +43,11 @@ const Navibar = ({user}) => {
             </button>
       </div>
       <div className="mt-6 flow-root">
-        <div className="-my-6 divide-y divide-gray-500/10">
+        <div className="-my-6 divide-y bg-gray-900">
           <div className="space-y-2 py-6">
-            <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-50">Features</Link>
-            <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-50">Marketplace</Link>
-            <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-50">Company</Link>
+            <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-50">About Us</Link>
+            <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-50">Contact Us</Link>
+            <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-50">Farms</Link>
           </div>
           <div className="py-6">
             <Link to="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-50">Log in</Link>

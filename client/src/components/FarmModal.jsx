@@ -1,13 +1,36 @@
-import React, { useRef } from 'react'
+import axios from 'axios';
+import React, { useEffect, useRef } from 'react'
 import { IoClose } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
-const FarmModal = ({onClose}) => {
+const FarmModal = ({onClose,details={}}) => {
     const modalReference = useRef();
-
+    const navigate=useNavigate();
+    useEffect(()=>{
+        if(Object.keys(details).length!==0)
+            setFarmDetails(details)
+    },[])
+    const [farmDetails,setFarmDetails]=useState();
     const closeModal = (e) =>
     {
         if(modalReference.current == e.target)
             onClose();
+    }
+    const updateFarmDetails=(e)=>{
+        setFarmDetails({...farmDetails,[e.target.name]:e.target.value});
+    }
+    const submitFarmDetails=async()=>{
+        const accessToken=localStorage.getItem("accessToken");
+        if(accessToken){
+            await axios.post("http://localhost:8000/farm/add",farmDetails,{header:{
+                Authorization:`Bearer ${accessToken}`
+            }}).then((data)=>{
+                navigate("/farms")
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        }
     }
   return (
     <div>
@@ -17,11 +40,10 @@ const FarmModal = ({onClose}) => {
                 <div className='bg-indigo-600 rounded-xl px-10 py-10 flex flex-col items-center gap-5 mx-4 w-96'>
                     <h1 className='text-4xl font-extrabold'>Add New Farm</h1>
                     <form>
-                        <input type='number' placeholder='Area' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300'/>
-                        <input type='text' placeholder='Units (acre/sqkm)' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300'/>
-                        <input type='text' placeholder='Region' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300'/>
-                        <input type='text' placeholder='Report' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300  '/>
-                        <button className='mt-4 w-full justify-center items-center px-5 py-3 rounded-md bg-black font-medium'>Add</button>
+                        <input type='number' name='area' value={farmDetails?.area} onChange={updateFarmDetails} placeholder='Area' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300' required/>
+                        <input type='text' name='units' value={farmDetails?.units} onChange={updateFarmDetails} placeholder='Units (acre/sqkm)' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300' required/>
+                        <input type='text' name='region' value={farmDetails?.region} onChange={updateFarmDetails} placeholder='Region' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300' required/>
+                        <button onClick={submitFarmDetails} className='mt-4 w-full justify-center items-center px-5 py-3 rounded-md bg-black font-medium'>Add</button>
                     </form>
                 </div>
             </div>

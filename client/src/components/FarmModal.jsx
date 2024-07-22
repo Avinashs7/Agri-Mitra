@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
+
 
 const FarmModal = ({onClose,details={}}) => {
     const modalReference = useRef();

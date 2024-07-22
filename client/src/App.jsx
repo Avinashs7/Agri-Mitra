@@ -11,7 +11,6 @@ import Workflow from './components/Workflow'
 import Vision from './components/Vision'
 import { useEffect, useState } from 'react'
 import Farms from './components/Farms'
-import FarmModal from './components/FarmModal'
 import FarmDetail from './components/FarmDetail'
 
 
@@ -69,7 +68,7 @@ function App() {
       <Navbar />
       <FarmDetail />
       </>
-    }
+    },
   ])
   return (
     <>

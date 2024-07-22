@@ -8,9 +8,10 @@ export default {
     extend: {
       backgroundImage: {
         'background' : "url('./src/images/background.png')"
-      }
+      },
     },
   },
   plugins: [],
 }
+
 

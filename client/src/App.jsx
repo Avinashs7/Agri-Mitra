@@ -51,21 +51,21 @@ function App() {
     {
       path: '/otp',
       element: <>
-        <Navbar value={user}/>
+        <Navbar user={user}/>
         <Otp />
       </>
     },  
     {
       path: '/farms',
       element : <>
-      <Navbar value={user} />
+      <Navbar user={user} />
       <Farms />
       </>
     },
     {
       path: '/farmDetail',
       element: <>
-      <Navbar />
+      <Navbar user={user}/>
       <FarmDetail />
       </>
     },

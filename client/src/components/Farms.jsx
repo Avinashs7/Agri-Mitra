@@ -24,12 +24,12 @@ const Farms = () => {
       </Link>
       <Link to='/farmDetail'>
         <div className=' mt-5 mx-40 rounded-md shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg text-center'>
-          <h1 className='p-5'>Vijayanagar</h1>
+          <h1 className='p-5'>Nagarbgavi</h1>
         </div>
       </Link>
       <Link to='/farmDetail'>
         <div className=' mt-5 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center'>
-          <h1 className='p-5'>Vijayanagar</h1>
+          <h1 className='p-5'>Channasandra</h1>
         </div>
       </Link>
       {

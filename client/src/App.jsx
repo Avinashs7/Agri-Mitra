@@ -55,7 +55,7 @@ function App() {
         <Navbar value={user}/>
         <Otp />
       </>
-    },
+    },  
     {
       path: '/farms',
       element : <>

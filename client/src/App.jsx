@@ -17,6 +17,7 @@ import IssueDetail from './components/IssueDetail'
 import { useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Question from './components/Question'
+import Dropdown from './components/Dropdown'
 
 function App() {
   const [user,setUser]=useState();
@@ -94,6 +95,11 @@ function App() {
       <Navbar />
       <Question />
       </>
+    },
+    {
+      path: '/dropdown',
+      element:
+      <Dropdown />
     }
   ])
   return (

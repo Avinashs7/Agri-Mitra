@@ -12,7 +12,7 @@ const Landing = () => {
         <div className="relative isolate px-6 lg:px-8 bg-gradient-to-tr from-[#242527] to-[#040303] bg-opacity-25">
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-28" data-aos="fade-up">
             <div className="text-center">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl">Farming Meets Innovation: Predict Your Best Crop
+                <h1 className="text-4xl pt-10 font-bold tracking-tight text-gray-100 sm:text-6xl">Farming Meets Innovation: Predict Your Best Crop
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-300">Empowering farmers with data-driven crop predictions for optimal yield 
                   and sustainable farming.</p>

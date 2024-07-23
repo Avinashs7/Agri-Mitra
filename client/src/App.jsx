@@ -12,6 +12,7 @@ import Vision from './components/Vision'
 import { useEffect, useState } from 'react'
 import Farms from './components/Farms'
 import FarmDetail from './components/FarmDetail'
+import Footer from './components/Footer'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Workflow />
         <Vision />
         <AboutUs />
+        <Footer />
       </>
     },
     {

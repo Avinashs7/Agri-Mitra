@@ -18,21 +18,21 @@ const FarmDetail = () => {
             <button onClick={()=>setCropShowModal(true)}>
                 <div className='m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
                     <img src={crop} className='p-6'/>
-                    <label className='mr-5 text-lg'>Crop:</label>
+                    <label className='mr-5 text-lg'>Nitrogen:</label>
                     <input type='text' className='border border-gray-500 w-60' />
                 </div>
             </button>
             <div className='flex flex-col m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
                 <img src={nitrogen} className='pt-10 px-10 h-64'/>
                 <div className='flex flex-row pt-4'>
-                    <label className='ml-12 mr-5 text-lg'>NPK:</label>
+                    <label className='ml-1 mr-5 text-lg'>Phosphorous:</label>
                     <input type='text' className='border border-gray-500 w-60' />
                 </div>
             </div>
             <div className='flex flex-col m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
                 <img src={texture} className='mt-10 pl-6 pr-6' />
                 <div className='flex flex-row mt-7 justify-center items-center'>
-                    <label className='text-lg mr-4'>Texture:</label>
+                    <label className='text-lg mr-4'>Potassium:</label>
                     <input type='text' className='border border-gray-500 w-60' />
                 </div>
             </div>
@@ -41,7 +41,7 @@ const FarmDetail = () => {
             <div className='m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
                 <img src={depth} className='px-6 pt-6'/>
                 <div className='flex justify-center items-center pt-2'>
-                    <label className='mr-5 text-lg'>Depth:</label>
+                    <label className='mr-5 text-lg'>Temperature:</label>
                     <input type='text' className='border border-gray-500 w-60' />
                 </div>
             </div>
@@ -55,7 +55,7 @@ const FarmDetail = () => {
             <div className='m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
                 <img src={pressure} className='px-6 pt-8'/>
                 <div className='flex justify-center items-center pt-5'>
-                    <label className='mr-4 text-lg'>Pressure:</label>
+                    <label className='mr-4 text-lg'>Rainfall:</label>
                     <input type='text' className='border border-gray-500 w-60' />
                 </div>
             </div>
@@ -68,13 +68,9 @@ const FarmDetail = () => {
                     <input type='text' className='border border-gray-500 w-60' />
                 </div>
             </div>
-            <div className='m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
-                <img src={climate} className='px-6 pt-8'/>
-                <div className='flex justify-center items-center pt-4'>
-                    <label className='mr-4 text-lg'>Climate:</label>
-                    <input type='text' className='border border-gray-500 w-60' />
-                </div>
-            </div>
+        </div>
+        <div className='flex flex-col justify-center items-center p-10'>
+            <h1 className='bg-green-500 p-5 w-96 text-center text-white border border-red-400 text-3xl'>Answer</h1>
         </div>
         <div className='flex flex-col justify-center items-center p-10'>
             <button className='bg-gray-900 w-72 h-16 text-white rounded-md text-2xl hover:bg-gray-950'>Submit</button>

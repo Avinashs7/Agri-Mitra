@@ -17,7 +17,7 @@ const Navibar = ({user}) => {
                 <Link to="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</Link>
                 <a href="#aboutUs" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</a>
                 <Link to="/farms" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Farms</Link>
-                <Link to="/" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Issues</Link>
+                <Link to="/issues" className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Issues</Link>
             </div>
             {user?
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">

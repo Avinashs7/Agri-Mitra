@@ -44,11 +44,10 @@ const FarmModal = ({onClose,details={}}) => {
                     <h1 className='text-4xl font-extrabold'>Add New Farm</h1>
                     <form>
                         <input type='number' name='area' value={farmDetails?.area} onChange={updateFarmDetails} placeholder='Area' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300' required/>
-                        <input type='Number' name='units' value={farmDetails?.units} onChange={updateFarmDetails} placeholder='Units' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300' required/>
-                        <select className='w-full my-2 rounded-md px-4 py-3 text-gray-600 border-gray-300' required>
+                        <select name='unit' className='w-full my-2 rounded-md px-4 py-3 text-gray-600 border-gray-300'onChange={updateFarmDetails} required>
                             <option className='ml-10'>------Select Unit-----</option>
-                            <option>Acre</option>
-                            <option>SqKm</option>
+                            <option value={"acre"}>Acre</option>
+                            <option value={"sqkm"}>SqKm</option>
                         </select>
                         <input type='text' name='region' value={farmDetails?.region} onChange={updateFarmDetails} placeholder='Region' className='w-full my-2 rounded-md px-4 py-3 text-black border-gray-300' required/>
                         <button onClick={submitFarmDetails} className='mt-4 w-full justify-center items-center px-5 py-3 rounded-md bg-black font-medium'>Add</button>

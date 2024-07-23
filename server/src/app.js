@@ -35,6 +35,8 @@ app.use("/farm",farmRouter)
 const solutionRouter=require("./routes/solutions.route")
 app.use("/solution",solutionRouter)
 
+const predictionRoute=require("./routes/prediction.route")
+app.use("/predict",predictionRoute)
 //The last middlewaree to be used, because this is a general error handling middleware if the response isn't ended anywhere the above it will return the error here
 app.use((error,req,res,next)=>{
     console.error(error)

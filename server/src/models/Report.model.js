@@ -45,7 +45,10 @@ const ReportSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    
+    farmId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Farm'
+    }
 })
 
 const Report=mongoose.model('Report',ReportSchema)

@@ -12,7 +12,7 @@ const PredictionSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    ownedBy:{
+    reportId:{
         type:mongoose.Types.ObjectId,
         ref:'Report'
     }

@@ -4,6 +4,10 @@ const ApiResponse=require("../utils/ApiResponse")
 const Issues=require("../models/Issues.model")
 const uploadToCloudinary=require("../utils/cloudinary")
 
+/***
+ * Issues are the challenges farmers has come acrossed and they can post it using the platform
+ * The issues may also include photos for better understanding and makes ease to diagnose
+*/
 const addIssue=asyncHandler(async(req,res)=>{
     const{
         challenges

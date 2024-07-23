@@ -14,8 +14,9 @@ const addReport=asyncHandler(async(req,res)=>{
         ph,
         texture,
         depth,
-        climate
+        climate,
     }=req.body;
+    farmId=req.params?.farmId;
     if([crop,n,p,k,atm,humidity,ph,texture,depth,climate].some(field=>{
         if(field.trim()==="")
             throw new ApiError(402,"Please fill all required fields");
@@ -29,7 +30,9 @@ const addReport=asyncHandler(async(req,res)=>{
         ph,
         texture,
         depth,
-        climate});
+        climate,
+        farmId
+    });
     return res.status(200).send(new ApiResponse(200,"Report added successfully"));
 })
 

@@ -13,8 +13,18 @@ const addFarm=asyncHandler(async(req,res)=>{
         if(field.trim()==="")
             throw new ApiError(402,"All fields are required");
     }));
-    const farm=await Farm.create({area,unit,region});
-    return res.status(200).send(new ApiResponse(200,null,"Farm added successfully"));
+    const farm=await Farm.create({area,unit,region,ownedBy:req.user?._id});
+    return res.status(200).send(new ApiResponse(200,farm,"Farm added successfully"));
 })
 
-module.exports={addFarm}
+const getFarms=asyncHandler(async(req,res)=>{
+    const id=req.user?._id;
+    if(!id){
+        throw ApiError(405,"There is no valid User")
+    }
+    const farms=await Farm.find({ownedBy:id});
+    console.log(farms)
+    return res.status(200).send(new ApiResponse(200,farms,"The farm details of the user"));
+})
+
+module.exports={addFarm,getFarms}

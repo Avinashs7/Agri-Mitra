@@ -18,9 +18,9 @@ const farmSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    report:{
+    ownedBy:{
         type:mongoose.Types.ObjectId,
-        ref:'Report'
+        ref:'User'
     }
 })
 

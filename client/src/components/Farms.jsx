@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import FarmModal from './FarmModal';
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Farms = () => {
   const [showModal, setShowModal] =useState(false)
+  const [farmDetails,setFarmDetails]=useState({});
+  useEffect(()=>{
+    const fetchFarm=async()=>{
+      const accessToken=localStorage.getItem("accessToken")
+      await axios.get("http://localhost:8000/farm/getFarms",{headers:{
+        Authorization:`Bearer ${accessToken}`
+      }})
+      .then((data)=>{
+        setFarmDetails(data?.data?.data)
+      })
+      .catch((err)=>{
+        console.error(err);
+      })
+    }
+    fetchFarm();
+  },[showModal])
   return (
     <div>
       <div>
@@ -17,21 +34,21 @@ const Farms = () => {
       <div className='text-3xl text-center font-bold mt-7'>
         <h1>Your Farms</h1>
       </div>
-      <Link to='/farmDetail'>
-        <div className=' mt-10 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center'>
-          <h1 className='p-5'>Vijayanagar</h1>
+      {farmDetails && farmDetails.length > 0 ? (
+        farmDetails.map((farmDetail) => (
+          <Link to="/farmDetail" key={farmDetail._id}>
+            <div className="mt-10 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center">
+              <h1>{farmDetail._id}</h1>
+              <h6>{farmDetail.area} {farmDetail.unit}</h6>
+              <address>{farmDetail.region}</address>
+            </div>
+          </Link>
+        ))
+      ) : (
+        <div>
+          <p>No farms registered by the user</p>
         </div>
-      </Link>
-      <Link to='/farmDetail'>
-        <div className=' mt-5 mx-40 rounded-md shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg text-center'>
-          <h1 className='p-5'>Nagarbgavi</h1>
-        </div>
-      </Link>
-      <Link to='/farmDetail'>
-        <div className=' mt-5 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center'>
-          <h1 className='p-5'>Channasandra</h1>
-        </div>
-      </Link>
+      )}
       {
         showModal && <FarmModal onClose = {() => setShowModal(false)} />
       }

@@ -20,19 +20,21 @@ const FarmModal = ({onClose,details={}}) => {
     const updateFarmDetails=(e)=>{
         setFarmDetails({...farmDetails,[e.target.name]:e.target.value});
     }
-    const submitFarmDetails=async()=>{
+    const submitFarmDetails=async(e)=>{
+        e.preventDefault();
         const accessToken=localStorage.getItem("accessToken");
         if(accessToken){
-            await axios.post("http://localhost:8000/farm/add",farmDetails,{header:{
+            await axios.post("http://localhost:8000/farm/add",farmDetails,{headers:{
                 Authorization:`Bearer ${accessToken}`
             }}).then((data)=>{
-                navigate("/farms")
+                onClose()
             })
             .catch((err)=>{
                 console.error(err);
             })
         }
     }
+    console.log(farmDetails)
   return (
     <div>
         <div ref = {modalReference} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>

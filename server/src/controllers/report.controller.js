@@ -5,35 +5,41 @@ const ApiResponse = require("../utils/ApiResponse");
 
 const addReport=asyncHandler(async(req,res)=>{
     const {
-        crop,
-        n,
-        p,
-        k,
-        atm,
+        N,
+        P,
+        K,
+        temperature,
         humidity,
         ph,
-        texture,
-        depth,
-        climate,
+        rainfall
     }=req.body;
     farmId=req.params?.farmId;
-    if([crop,n,p,k,atm,humidity,ph,texture,depth,climate].some(field=>{
+    if([N,P,K,temperature,humidity,ph,rainfall].some(field=>{
         if(field.trim()==="")
             throw new ApiError(402,"Please fill all required fields");
     }));
-    const report = await Report.create({crop,
-        n,
-        p,
-        k,
-        atm,
+    const report = await Report.create({
+        N,
+        P,
+        K,
+        temperature,
         humidity,
         ph,
-        texture,
-        depth,
-        climate,
+        rainfall,
         farmId
     });
-    return res.status(200).send(new ApiResponse(200,"Report added successfully"));
+    return res.status(200).send(new ApiResponse(200,report,"Report added successfully"));
 })
 
-module.exports={addReport}
+const getReport=asyncHandler(async(req,res)=>{
+    const farmId=req.params?.farmId;
+    const report=await Report.findOne({farmId:farmId});
+    if(!report){
+        return res.status(200).send(new ApiResponse(404,null,"No farm details found"));
+    }
+    return res.status(200).send(new ApiResponse(200,report,"Farm details fetched"));
+})
+
+module.exports={addReport,
+    getReport
+}

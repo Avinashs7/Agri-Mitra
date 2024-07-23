@@ -23,7 +23,7 @@ const getFarms=asyncHandler(async(req,res)=>{
         throw ApiError(405,"There is no valid User")
     }
     const farms=await Farm.find({ownedBy:id});
-    console.log(farms)
+    // console.log(farms)
     return res.status(200).send(new ApiResponse(200,farms,"The farm details of the user"));
 })
 

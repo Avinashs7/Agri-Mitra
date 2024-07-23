@@ -26,9 +26,10 @@ const predictCrop=asyncHandler(async(req,res)=>{
         ph,
         rainfall
     }=req.body;
-    // console.log(id);
+    // console.log({N,P,K,temperature,humidity,ph,rainfall});
+    // console.log(req.body);
     if([N,P,K,temperature,humidity,ph,rainfall].some((fields)=>{
-        if(fields.trim()==="")
+        if(fields===undefined)
             throw new ApiError(406,"All fields are required to predict a crop");
     }));
 
@@ -44,4 +45,13 @@ const predictCrop=asyncHandler(async(req,res)=>{
     })
 })
 
-module.exports={predictCrop}
+const getPredictedCrop=asyncHandler(async(req,res)=>{
+    const reportId=req.params?.reportId;
+    const predictedCrop=await Prediction.findOne({reportId:reportId});
+    if(!predictedCrop){
+        throw new ApiError(404,"No prediction done");
+    }
+    return res.status(200).send(new ApiResponse(200,predictedCrop,"Predicted crop for the farm"));
+})
+
+module.exports={predictCrop,getPredictedCrop}

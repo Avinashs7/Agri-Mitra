@@ -36,7 +36,7 @@ const Farms = () => {
       </div>
       {farmDetails && farmDetails.length > 0 ? (
         farmDetails.map((farmDetail) => (
-          <Link to="/farmDetail" key={farmDetail._id}>
+          <Link to={`/farmDetail/${farmDetail._id}`} key={farmDetail._id}>
               <div className="mt-10 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center py-6">
                 <h1 className='text-xl text-bold'>{farmDetail._id}</h1>
                 <h6 className='text-lg'>{farmDetail.area} {farmDetail.unit}</h6>

@@ -69,7 +69,7 @@ function App() {
       </>
     },
     {
-      path: '/farmDetail',
+      path: '/farmDetail/:farmId',
       element: <>
       <Navbar user={user}/>
       <FarmDetail />

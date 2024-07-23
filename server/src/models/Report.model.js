@@ -5,44 +5,32 @@ const mongoose=require("mongoose")
  * It has all the factors which affect the soil fertility
  */
 const ReportSchema=new mongoose.Schema({
-    crop:{
-        type:String,
+    N:{
+        type:Number,
         required:true,
     },
-    n:{
-        type:String,
+    P:{
+        type:Number,
         required:true,
     },
-    p:{
-        type:String,
+    K:{
+        type:Number,
         required:true,
     },
-    k:{
-        type:String,
-        required:true,
-    },
-    atm:{
-        type:String,
+    temperature:{
+        type:Number,
         required:true,
     },
     humidity:{
-        type:String,
+        type:Number,
         required:true,
     },
     ph:{
-        type:String,
+        type:Number,
         required:true,
     },
-    texture:{
-        type:String,
-        required:true,
-    },
-    depth:{
-        type:String,
-        required:true,
-    },
-    climate:{
-        type:String,
+    rainfall:{
+        type:Number,
         required:true,
     },
     farmId:{

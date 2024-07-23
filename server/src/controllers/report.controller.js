@@ -14,21 +14,27 @@ const addReport=asyncHandler(async(req,res)=>{
         rainfall
     }=req.body;
     farmId=req.params?.farmId;
-    if([N,P,K,temperature,humidity,ph,rainfall].some(field=>{
-        if(field.trim()==="")
-            throw new ApiError(402,"Please fill all required fields");
-    }));
-    const report = await Report.create({
-        N,
-        P,
-        K,
-        temperature,
-        humidity,
-        ph,
-        rainfall,
-        farmId
-    });
-    return res.status(200).send(new ApiResponse(200,report,"Report added successfully"));
+    const existingReport=await Report.findOneAndUpdate({farmId:farmId},{N,K,P,temperature,humidity,ph,rainfall});
+    if(!existingReport){
+        if([N,P,K,temperature,humidity,ph,rainfall].some(field=>{
+            if(field.trim()==="")
+                throw new ApiError(402,"Please fill all required fields");
+        }));
+        const report = await Report.create({
+            N,
+            P,
+            K,
+            temperature,
+            humidity,
+            ph,
+            rainfall,
+            farmId
+        });
+        return res.status(200).send(new ApiResponse(200,report,"Report added successfully"));
+    }
+    else{
+        return res.status(200).send(new ApiResponse(200,existingReport,"Report updated successfully"));
+    }
 })
 
 const getReport=asyncHandler(async(req,res)=>{

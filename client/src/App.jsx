@@ -78,21 +78,21 @@ function App() {
     {
       path: '/issues',
       element: <>
-      <Navbar />
+      <Navbar user={user}/>
       <Issues />
       </>
     },
     {
-      path: '/issueDetail',
+      path: '/issueDetail/:issueId',
       element: <>
-      <Navbar />
+      <Navbar user={user}/>
       <IssueDetail />
       </>
     },
     {
-      path: '/question',
+      path: '/question/:farmId',
       element: <>
-      <Navbar />
+      <Navbar user={user}/>
       <Question />
       </>
     },

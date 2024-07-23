@@ -2,15 +2,18 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import FarmModal from './FarmModal';
 import { IoAddCircleOutline } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Farms = () => {
+  const navigate=useNavigate();
   const [showModal, setShowModal] =useState(false)
   const [farmDetails,setFarmDetails]=useState({});
   useEffect(()=>{
     const fetchFarm=async()=>{
       const accessToken=localStorage.getItem("accessToken")
+      if(!accessToken)
+        navigate("/login");
       await axios.get("http://localhost:8000/farm/getFarms",{headers:{
         Authorization:`Bearer ${accessToken}`
       }})
@@ -38,9 +41,11 @@ const Farms = () => {
         farmDetails.map((farmDetail) => (
           <Link to={`/farmDetail/${farmDetail._id}`} key={farmDetail._id}>
               <div className="mt-10 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center py-6">
-                <h1 className='text-xl text-bold'>{farmDetail._id}</h1>
-                <h6 className='text-lg'>{farmDetail.area} {farmDetail.unit}</h6>
-                <address className='italic'>{farmDetail.region}</address>
+                <h1 className='text-xl text-bold'>Farm ID : {farmDetail._id}</h1>
+                <h3 className='text-lg'>Area : {farmDetail.area} {farmDetail.unit}</h3>
+                <address className='italic'>Region : {farmDetail.region}</address>
+                <div>
+        </div>
               </div>
           </Link>
         ))

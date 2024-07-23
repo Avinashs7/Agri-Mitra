@@ -19,6 +19,10 @@ const IssuesSchema=new mongoose.Schema({
     ownedBy:{
         type:mongoose.Types.ObjectId,
         ref:'Farm'
+    },
+    userId:{
+        type:mongoose.Types.ObjectId,
+        ref:'user'
     }
 })
 

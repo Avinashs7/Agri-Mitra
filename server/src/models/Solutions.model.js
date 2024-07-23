@@ -12,7 +12,7 @@ const SolutionSchema=new mongoose.Schema({
     upvote:[
         {
             type:mongoose.Types.ObjectId,
-            ref:'User'
+            ref:'user'
         }
     ],
     images:[
@@ -22,7 +22,11 @@ const SolutionSchema=new mongoose.Schema({
     ],
     advisedBy:{
         type:mongoose.Types.ObjectId,
-        ref:'User',
+        ref:'user',
+    },
+    solves:{
+        type:mongoose.Types.ObjectId,
+        ref:'Issues'
     }
 })
 

@@ -1,6 +1,6 @@
 const {Router}=require("express");
 const router=Router();
-const {registerUser, loginUser,verifyOtp,getUser}=require("../controllers/user.controller")
+const {registerUser, loginUser,verifyOtp,getUser,logout}=require("../controllers/user.controller")
 const {upload}=require("../middlewares/multer.middleware");
 const verifyJWT = require("../middlewares/auth");
 
@@ -15,5 +15,7 @@ router.route("/verify/:id").post(verifyOtp)
 
 //To get the user details if the user is logged in and it is verified from auth middleware
 router.route("/getUser").get(verifyJWT,getUser)
+
+router.route("/logout").get(logout);
 
 module.exports=router

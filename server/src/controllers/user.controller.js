@@ -154,10 +154,17 @@ const getUser=asyncHandler(async(req,res)=>{
     return res.status(200).send(new ApiResponse(200,{accessToken:"",...userDetails},"user details sent"));
 })
 
+const logout=asyncHandler(async(req,res)=>{
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    return res.status(200).send(new ApiResponse(200,null,"successfully logged out"));
+})
+
 module.exports={
     registerUser,
     loginUser,
     verifyOtp,
     deleteOtp,
     getUser,
+    logout
 }

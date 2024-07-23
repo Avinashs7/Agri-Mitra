@@ -23,9 +23,32 @@ const addIssue=asyncHandler(async(req,res)=>{
         imagesUrl = await Promise.all(uploadPromises);
         imagesUrl = imagesUrl.map(response => response?.url);
     }
-    const issue=await Issues.create({challenges,images:imagesUrl,ownedBy:req.params?.farmId})
-    return res.send(new ApiResponse(200,null,"Issue noted successfully"))
+    const issue=await Issues.create({challenges,images:imagesUrl,ownedBy:req.params?.farmId,userId:req.user?._id})
+    return res.send(new ApiResponse(200,issue,"Issue noted successfully"))
 
 })
 
-module.exports={addIssue}
+const fetchAllIssues=asyncHandler(async(req,res)=>{
+    const issues=await Issues.find({})
+    .populate({path:'userId',select:"email firstName lastName avatar "})
+    .populate({path:'ownedBy',select:"region"});
+    return res.status(200).send(new ApiResponse(200,issues,"Issues fetched successfully"));
+})
+
+const fetchIssueById=asyncHandler(async(req,res)=>{
+    const issueId=req.params?.issueId;
+    if(!issueId){
+        throw new ApiError(404,"Error occurred in fetching the issue");
+    }
+
+    const issue=await Issues.findOne({_id:issueId})
+    .populate({path:'userId',select:"email firstName lastName avatar "})
+    .populate({path:'ownedBy',select:"region"});
+    return res.status(200).send(new ApiResponse(200,issue,"Issues fetched successfully"));
+})
+
+module.exports={
+    addIssue,
+    fetchAllIssues,
+    fetchIssueById
+}

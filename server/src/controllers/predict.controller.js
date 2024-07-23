@@ -8,11 +8,15 @@ const axios=require("axios")
 const benefits="The predicted crop benefits both the farmer to increase the yield and also retain the fertility of the soil";
 
 const storePrediction=async(data,id)=>{
-    const predictedValue=await Prediction.create({crop:data?.prediction,benefits:benefits,reportId:id});
-    if(!predictedValue){
-        throw new ApiError(404,"Error while storing the prediction value");
+    const existingPrediction=await Prediction.findOneAndUpdate({reportId:id},{crop:data?.prediction});
+    if(!existingPrediction){
+        const predictedValue=await Prediction.create({crop:data?.prediction,benefits:benefits,reportId:id});
+        if(!predictedValue){
+            throw new ApiError(404,"Error while storing the prediction value");
+        }
+        return predictedValue;
     }
-    return true;
+    return existingPrediction;
 }
 
 const predictCrop=asyncHandler(async(req,res)=>{
@@ -35,9 +39,13 @@ const predictCrop=asyncHandler(async(req,res)=>{
 
     await axios.post("http://127.0.0.1:8001/predict",{N,P,K,temperature,humidity,ph,rainfall})
     .then((response)=>{
-        const success=storePrediction(response?.data,id);
-        if(success)
-            res.status(200).send(new ApiResponse(200,response?.data,"responded from flask server"));
+        async function storeAndRespond(){
+            const prediction=await storePrediction(response?.data,id)
+            // console.log(prediction)
+            if(prediction)
+                res.status(200).send(new ApiResponse(200,prediction,"responded from flask server"));
+        }
+        storeAndRespond();
     })
     .catch((err)=>{
         console.error(err);

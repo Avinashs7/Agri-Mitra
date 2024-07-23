@@ -5,9 +5,24 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import logo from '../images/Logo.jpg'
 import agri from '../images/agri.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
+
+
 
 const Navibar = ({user}) => {
   const [isOpen, setIsOpen] = useState(false)
+  const logout=async()=>{
+    await axios.get("http://localhost:8000/user/logout")
+    .then((data)=>{
+      if(data?.data?.success){
+        localStorage.clear();
+        window.location.reload();
+      }
+    })
+    .catch(err=>{
+      console.error(err);
+    })
+  }
   return (
     <div>
       <header className="bg-gray-900">
@@ -24,26 +39,8 @@ const Navibar = ({user}) => {
             </div>
             {user?
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                {/* <button onClick={() =>{setIsOpen((prev) => !prev)}} className='rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white flex flex-row justify-center items-center gap-1'>
-                  {user}
-                  {
-                    isOpen ? 
-                    <>
-                      <MdKeyboardArrowUp />
-                    </>
-                    :
-                    <>
-                      <MdOutlineKeyboardArrowDown />
-                    </>
-                  }
-                </button>
-                { isOpen && 
-                  <div>
-                    <button className='text-white mt-20'>Log Out</button>
-                  </div>
-                } */}
                 <p className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{user}</p>
-                <button onClick= {()=> {localStorage.clear()}}className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Log Out</button>
+                <button onClick= {logout}className="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Log Out</button>
               </div>
             :
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import crop from '../images/crop.png'
 import nitrogen from '../images/Nitrogen.png'
 import texture from '../images/texture.png'
@@ -12,21 +12,26 @@ import axios from 'axios'
 const FarmDetail = () => {
     const [farmReport,setFarmReport]=useState();
     const {farmId}=useParams();
+    const navigate=useNavigate()
     // console.log(farmId)
     const [solution,setSolution]=useState();
     const updateFarmReport=(e)=>{
+        e.preventDefault();
         setFarmReport({...farmReport,[e.target.name]:e.target.value});
     }
     const predictSolution=async(reportId)=>{
         const accessToken=localStorage.getItem("accessToken");
+        if(!accessToken)
+            navigate("/login")
         await axios.post(`http://localhost:8000/predict/crop/${reportId}`,farmReport,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{
-            setSolution(data?.data);
+            setSolution(data?.data?.data);
         })
     }
-    const handleSubmit=async()=>{
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
         const accessToken=localStorage.getItem("accessToken");
         await axios.post(`http://localhost:8000/report/add/${farmId}`,farmReport,{
             headers:{
@@ -34,7 +39,7 @@ const FarmDetail = () => {
             }
         })
         .then((data)=>{
-            console.log(data?.data?.data?._id)
+            // console.log(data?.data?.data?._id)
             predictSolution(data?.data?.data?._id);
         })
         .catch((err)=>{
@@ -48,6 +53,7 @@ const FarmDetail = () => {
         }})
         .then((data)=>{
             if(data?.data?.success){
+                // console.log(data?.data)
                 setSolution(data?.data?.data)
             }
         })
@@ -73,8 +79,7 @@ const FarmDetail = () => {
 
     useEffect(()=>{
         fetchFarmDetails();
-    },[])
-  
+    },[solution?.crop])
     return (
     <div>
       <div>
@@ -135,6 +140,12 @@ const FarmDetail = () => {
                 </div>
             </div>
         </div>
+        <div>
+        <Link className='mr-5 shadow hover:shadow-md float-right flex items-center justify-center gap-2 px-3 py-3 font-bold bg-gray-900 text-white rounded-md' 
+            to={`/question/${farmId}`} >
+            Raise an Issue
+        </Link>
+        </div>
         {
             solution&&
             <div className='mt-10 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center py-6'>
@@ -144,10 +155,9 @@ const FarmDetail = () => {
         }
         
         <div className='flex flex-col justify-center items-center p-10'>
-            
             <button onClick={handleSubmit} className='bg-gray-900 w-72 h-16 text-white rounded-md text-2xl hover:bg-gray-950'>Submit</button>
-            
         </div>
+        
     </div>
   )
 }

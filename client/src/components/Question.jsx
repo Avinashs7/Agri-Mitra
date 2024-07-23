@@ -1,7 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FiPlus } from "react-icons/fi";
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios'
 
 const Question = () => {
+    const {farmId}=useParams();
+    const navigate=useNavigate();
+    const [issue,setIssue]=useState();
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
+        const accessToken=localStorage.getItem("accessToken");
+        if(!accessToken)
+            navigate("/login");
+        await axios.post(`http://localhost:8000/issue/add/${farmId}`,issue,{headers:{
+            Authorization:`Bearer ${accessToken}`
+        }})
+        .then((data)=>{
+            if(data?.data?.success){
+                console.log(data?.data)
+                navigate(`/issueDetail/${data?.data?.data?._id}`);
+            }
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    }
+    const updateIssue=(e)=>{
+        e.preventDefault();
+        setIssue({...issue,[e.target.name]:e.target.value});
+    }
+    console.log(issue)
   return (
     <div>
         <div className='text-3xl text-center font-bold mt-28'>
@@ -13,24 +41,24 @@ const Question = () => {
                     <div className='flex flex-row'>
                         <div className='flex flex-col justify-center items-center'>
                             <div className='mt-4 border border-gray-400 mx-40 p-10'>
-                                <label className='text-xl ml-20 mt-10'>Upload the image</label><br />
-                                <input type='file' className='text-md ml-6 mt-6'/>
+                                <label className='text-xl ml-20 mt-10'>Upload the images</label><br />
+                                <input type='file' name='images' onChange={updateIssue} className='text-md ml-6 mt-6'/>
                             </div>
 
                         </div>
                         <div className='border border-gray-400 p-4 mt-4'>
                             <div>
-                                <label className='text-xl'>Describe your question</label><br/>
+                                <label className='text-xl'>Describe your issue</label><br/>
                             </div>
                             <div>
-                                <textarea rows={4} cols={50} className='text-base mt-2 border border-gray-300'></textarea> 
+                                <textarea rows={4} cols={50} name='challenges' onChange={updateIssue} className='text-base mt-2 border border-gray-300'></textarea> 
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div className='mt-20'>
-                <button className='w-60 bg-gray-600 h-14 rounded-md text-white text-lg hover:bg-gray-800'>Submit</button>
+                <button onClick={handleSubmit} className='w-60 bg-gray-600 h-14 rounded-md text-white text-lg hover:bg-gray-800'>Submit</button>
             </div>
         </div>
     </div>

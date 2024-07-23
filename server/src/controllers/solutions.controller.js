@@ -5,6 +5,7 @@ const Solution=require("../models/Solutions.model");
 const ApiResponse = require("../utils/ApiResponse");
 
 const addSolution=asyncHandler(async(req,res)=>{
+    const issueId=req.params?.issueId;
     const{
         answer
     }=req.body;
@@ -19,7 +20,7 @@ const addSolution=asyncHandler(async(req,res)=>{
         imagesUrl = await Promise.all(uploadPromises);
         imagesUrl = imagesUrl.map(response => response?.url);
     }
-    const soultion=await Solution.create({answer,images:imagesUrl,advisedBy:req.user?._id})
+    const soultion=await Solution.create({answer,images:imagesUrl,advisedBy:req.user?._id,solves:issueId})
     return res.status(200).send(ApiResponse(200,null,"Solution added successfully"));
 })
 
@@ -35,4 +36,11 @@ const addUpvote=asyncHandler(async(req,res)=>{
     return res.status(200).send(new ApiResponse(200,null,"Liked"));
 })
 
-module.exports={addSolution,addUpvote}
+const fetchAllSolution=asyncHandler(async(req,res)=>{
+    const issueId=req.params?.issueId;
+    const solutions=await Solution.find({solves:issueId})
+    .populate({path:'advisedBy',select:"email firstName lastName"});
+    return res.status(200).send(new ApiResponse(200,solutions,"Fetched Solutions for a issue"));
+})
+
+module.exports={addSolution,addUpvote,fetchAllSolution}

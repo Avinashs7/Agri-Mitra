@@ -20,8 +20,8 @@ const addSolution=asyncHandler(async(req,res)=>{
         imagesUrl = await Promise.all(uploadPromises);
         imagesUrl = imagesUrl.map(response => response?.url);
     }
-    const soultion=await Solution.create({answer,images:imagesUrl,advisedBy:req.user?._id,solves:issueId})
-    return res.status(200).send(ApiResponse(200,null,"Solution added successfully"));
+    const solution=await Solution.create({answer,images:imagesUrl,advisedBy:req.user?._id,solves:issueId})
+    return res.status(200).send(new ApiResponse(200,solution,"Solution added successfully"));
 })
 
 const addUpvote=asyncHandler(async(req,res)=>{
@@ -39,7 +39,7 @@ const addUpvote=asyncHandler(async(req,res)=>{
 const fetchAllSolution=asyncHandler(async(req,res)=>{
     const issueId=req.params?.issueId;
     const solutions=await Solution.find({solves:issueId})
-    .populate({path:'advisedBy',select:"email firstName lastName"});
+    .populate({path:'advisedBy',select:"email firstName lastName avatar"});
     return res.status(200).send(new ApiResponse(200,solutions,"Fetched Solutions for a issue"));
 })
 

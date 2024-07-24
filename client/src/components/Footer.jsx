@@ -73,7 +73,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-center p-2 bg-gray-800 text-gray-300">
-          © 2024 Copyright
+          © 2024 Copyrights reserved
         </div>
       </footer>
     </div>

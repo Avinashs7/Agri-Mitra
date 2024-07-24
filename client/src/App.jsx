@@ -103,9 +103,9 @@ function App() {
       <Dropdown />
     },
     {
-      path: '/solution',
+      path: '/solution/:issueId',
       element: <>
-      <Navbar />
+      <Navbar user={user}/>
       <Solution />
       </>
     }

@@ -16,6 +16,6 @@ router.route("/add/:issueId").post(verifyJWT,
 //Route to indicate the user who are benefitted from the solution
 router.route("/like/:solutionId").patch(addUpvote);
 
-router.route("/solution/allSolution/:issueId").get(verifyJWT,fetchAllSolution)
+router.route("/allSolution/:issueId").get(verifyJWT,fetchAllSolution)
 
 module.exports=router 

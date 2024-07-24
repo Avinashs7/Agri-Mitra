@@ -6,10 +6,12 @@ const {upload}=require("../middlewares/multer.middleware.js")
 
 //Route to handle the issues of users and also the photocopy of it 
 router.route("/add/:farmId").post(verifyJWT,
-    upload.fields([{
-    name:"images",
-    maxCount:5
-}]),addIssue)
+    upload.fields([
+        {
+            name:"images",
+            maxCount:5
+        }]),
+        addIssue);
 
 //route to fetch all the issues of farmers
 router.route("/allIssues").get(verifyJWT,fetchAllIssues)

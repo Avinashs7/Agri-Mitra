@@ -29,7 +29,7 @@ const Question = () => {
         e.preventDefault();
         setIssue({...issue,[e.target.name]:e.target.value});
     }
-    console.log(issue)
+    
   return (
     <div>
         <div className='text-3xl text-center font-bold mt-28'>
@@ -42,7 +42,7 @@ const Question = () => {
                         <div className='flex flex-col justify-center items-center'>
                             <div className='mt-4 border border-gray-400 mx-40 p-10'>
                                 <label className='text-xl ml-20 mt-10'>Upload the images</label><br />
-                                <input type='file' name='images' onChange={updateIssue} className='text-md ml-6 mt-6'/>
+                                <input name='images' type='file' onChange={updateIssue} className='text-md ml-6 mt-6'/>
                             </div>
 
                         </div>

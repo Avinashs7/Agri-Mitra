@@ -14,15 +14,17 @@ const addIssue=asyncHandler(async(req,res)=>{
     }=req.body;
  
     if(challenges===undefined || challenges.trim()==="")
-        throw new ApiError(415,"No required field should be empty")
+        throw new ApiError(405,"No required field should be empty")
 
     let imagesUrl=[];
-    if (req.files?.images && Array.isArray(req.files.images)) {
-        const uploadPromises = req.files.images.map(async(element) => await uploadToCloudinary(element.path));
+    // console.log(req.files);
+    if (req.files?.images && Array.isArray(req.files?.images)) {
+        const uploadPromises = req.files?.images.map(async(element) => await uploadToCloudinary(element.path));
 
         imagesUrl = await Promise.all(uploadPromises);
         imagesUrl = imagesUrl.map(response => response?.url);
     }
+    // console.log(imagesUrl)
     const issue=await Issues.create({challenges,images:imagesUrl,ownedBy:req.params?.farmId,userId:req.user?._id})
     return res.send(new ApiResponse(200,issue,"Issue noted successfully"))
 

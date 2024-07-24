@@ -81,8 +81,8 @@ const IssueDetail = () => {
             );
           })
         }
-      <div >
-        <Link to={`/solution/${issueId}`} className='mr-5 shadow hover:shadow-xl float-right flex items-center justify-center gap-2 px-3 py-3 font-bold bg-gray-900 text-white rounded-md'> 
+      <div className='flex flex-col h-full mr-5 mt-52 justify-end items-end '>
+        <Link to={`/solution/${issueId}`} className='fixed p-5 shadow hover:shadow-xl flex items-center justify-center gap-2 px-3 py-3 font-bold bg-gray-900 text-white rounded-md'> 
           Add Your Solution <IoAddCircleOutline size={30}/>
         </Link>
       </div>

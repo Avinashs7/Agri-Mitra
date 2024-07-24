@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import crop from '../images/crop.png'
 import nitrogen from '../images/Nitrogen.png'
-import texture from '../images/texture.png'
-import depth from '../images/Depth.png'
+import Phosphorous from '../images/Phosphorous.png'
+import Potassium from '../images/Potassium.png'
+import Temperature from '../images/Temperature.png'
+import Rainfall from '../images/Rainfall.png'
 import pH from '../images/pH.png'
 import pressure from '../images/pressure.png'
 import humidity from '../images/humidity.png'
@@ -88,20 +89,22 @@ const FarmDetail = () => {
         <div className='flex justify-center'>
             <button onClick={()=>setCropShowModal(true)}>
                 <div className='m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
-                    <img src={crop} className='p-6'/>
-                    <label className='mr-5 text-lg'>Nitrogen:</label>
-                    <input type='number' value={farmReport?.N} name="N" onChange={updateFarmReport} className='border border-gray-500 w-60' />
+                    <img src={nitrogen} className='pt-10 pb-5 mx-auto px-10 h-64'/>
+                    <div className='flex flex-row pt-4'>
+                        <label className='ml-4 mr-5 text-lg'>Nitrogen:</label>
+                        <input type='number' value={farmReport?.N} name="N" onChange={updateFarmReport} className='border border-gray-500 w-60' />
+                    </div>
                 </div>
             </button>
             <div className='flex flex-col m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
-                <img src={nitrogen} className='pt-10 px-10 h-64'/>
+                <img src={Phosphorous} className='pt-10 px-10 h-64'/>
                 <div className='flex flex-row pt-4'>
                     <label className='ml-1 mr-5 text-lg'>Phosphorous:</label>
                     <input type='number' value={farmReport?.P} name="P" onChange={updateFarmReport} className='border border-gray-500 w-60' />
                 </div>
             </div>
             <div className='flex flex-col m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
-                <img src={texture} className='mt-10 pl-6 pr-6' />
+                <img src={Potassium} className='mt-10 h-52 px-16 pt-6' />
                 <div className='flex flex-row mt-7 justify-center items-center'>
                     <label className='text-lg mr-4'>Potassium:</label>
                     <input type='number' value={farmReport?.K} name='K' onChange={updateFarmReport} className='border border-gray-500 w-60' />
@@ -110,8 +113,8 @@ const FarmDetail = () => {
         </div>
         <div className='flex justify-center'>
             <div className='m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
-                <img src={depth} className='px-6 pt-6'/>
-                <div className='flex justify-center items-center pt-2'>
+                <img src={Temperature} className='px-6 pt-6 h-64 mx-auto'/>
+                <div className='flex justify-center items-center pt-5'>
                     <label className='mr-5 text-lg'>Temperature:</label>
                     <input type='number' value={farmReport?.temperature} name='temperature' onChange={updateFarmReport} className='border border-gray-500 w-60' />
                 </div>
@@ -124,7 +127,7 @@ const FarmDetail = () => {
                 </div>
             </div>
             <div className='m-8 shadow-xl hover:shadow-2xl w-96 h-80'>
-                <img src={pressure} className='px-6 pt-8'/>
+                <img src={Rainfall} className='px-6 pt-8'/>
                 <div className='flex justify-center items-center pt-5'>
                     <label className='mr-4 text-lg'>Rainfall:</label>
                     <input type='number' value={farmReport?.rainfall} name='rainfall' onChange={updateFarmReport} className='border border-gray-500 w-60' />
@@ -140,24 +143,24 @@ const FarmDetail = () => {
                 </div>
             </div>
         </div>
-        <div>
-        <Link className='mr-5 shadow hover:shadow-md float-right flex items-center justify-center gap-2 px-3 py-3 font-bold bg-gray-900 text-white rounded-md' 
-            to={`/question/${farmId}`} >
-            Raise an Issue
-        </Link>
-        </div>
         {
             solution&&
-            <div className='mt-10 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center py-6'>
+            <div className='mt-10 bg-green-400 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] hover:shadow-lg mx-40 rounded-md text-center py-6'>
                 <h1 className='text-xl text-bold'>Predicted Crop : {solution?.crop}</h1>
                 <p>{solution?.benefits}</p>
             </div>
         }
-        
-        <div className='flex flex-col justify-center items-center p-10'>
-            <button onClick={handleSubmit} className='bg-gray-900 w-72 h-16 text-white rounded-md text-2xl hover:bg-gray-950'>Submit</button>
+        <div className='flex flex-row justify-center items-center'>
+            <div className='flex flex-col justify-center items-center p-10'>
+                <button onClick={handleSubmit} className='bg-gray-900 w-72 h-16 text-white rounded-md text-2xl hover:bg-gray-950'>Submit</button>
+            </div>
+            <div>
+                <Link className='mr-5 shadow h-16 w-72 hover:shadow-md hover:bg-gray-950 float-right flex items-center justify-center gap-2 px-3 py-3 text-2xl bg-gray-900 text-white rounded-md' 
+                    to={`/question/${farmId}`} >
+                    Raise an Issue
+                </Link>
+            </div>
         </div>
-        
     </div>
   )
 }

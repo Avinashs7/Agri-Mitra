@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Question from './components/Question'
 import Dropdown from './components/Dropdown'
+import Solution from './components/Solution'
 
 function App() {
   const [user,setUser]=useState();
@@ -100,6 +101,13 @@ function App() {
       path: '/dropdown',
       element:
       <Dropdown />
+    },
+    {
+      path: '/solution',
+      element: <>
+      <Navbar />
+      <Solution />
+      </>
     }
   ])
   return (

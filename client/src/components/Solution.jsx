@@ -1,0 +1,34 @@
+import React from 'react'
+import logo from '../images/Logo.jpg'
+
+const Solution = () => {
+  return (
+    <div>
+      <div className='text-3xl text-center font-bold mt-7'>
+        <h1>Explain Your Solution</h1>
+      </div>
+      <div className='mt-10 pb-20'>
+        <form>
+            <div>
+                <div className='flex flex-col mx-96'>
+                    <label className='text-start mb-2 ml-4 text-lg font-bold'>Describe Your Answer</label>
+                    <textarea rows={10} cols={50} className='border border-gray-500'></textarea>
+                </div>
+                <div className='flex flex-col mx-96 mt-10 border border-gray-500'>
+                    <label className='mb-5 p-2 ml-5 text-lg font-bold'>Upload Image</label>
+                    <input type='file' className='ml-5 p-5' />
+                    <div>
+                        <img src={logo} className='h-48 w-48 mx-auto pb-5'/>
+                    </div>
+                </div>
+            </div>
+        </form>
+      </div>
+        <div className='flex flex-col justify-center items-center'>
+            <button className='bg-gray-900 text-white rounded-md p-4 w-60 justify-center items-center mb-10 text-xl hover:bg-black'>Submit</button>
+        </div>
+    </div>
+  )
+}
+
+export default Solution

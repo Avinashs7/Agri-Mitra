@@ -3,6 +3,7 @@ require("dotenv").config()
 const {connectDB}=require("./db/config");
 const app=require("./app.js")
 const PORT=process.env.PORT||8080;
+const {logger}=require("../src/utils/logger")
 
 //DB connection logic 
 connectDB()
@@ -13,7 +14,7 @@ connectDB()
         process.exit(1);
     })
     app.listen(PORT,()=>{
-        console.log(`Server is running at http://localhost:${PORT}`)
+        logger.info(`Server is running at http://localhost:${PORT}`)
     })
 })
 .catch((error)=>{

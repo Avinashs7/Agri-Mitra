@@ -1,7 +1,7 @@
 const express=require("express");
 const app=express();
-const cookieParser=require("cookie-parser")
 const cors=require("cors");
+const morgan = require('morgan');
 
 //User defined class for API response
 const ApiResponse=require("./utils/ApiResponse")
@@ -18,6 +18,10 @@ app.use(express.json({limit:"16kb"}));
 app.use(express.urlencoded({extended:false,limit:"16kb"}));
 //static files accessible permission middleware
 app.use(express.static("public"))
+//To log the contents of when an api endpoint is hit
+app.use(morgan('dev'));
+// app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+
 
 //REST API Endpoints are defined in the below routers
 const userRouter=require("./routes/user.routes")
@@ -37,6 +41,7 @@ app.use("/solution",solutionRouter)
 
 const predictionRoute=require("./routes/prediction.route")
 app.use("/predict",predictionRoute)
+
 //The last middlewaree to be used, because this is a general error handling middleware if the response isn't ended anywhere the above it will return the error here
 app.use((error,req,res,next)=>{
     console.error(error)

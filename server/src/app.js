@@ -4,7 +4,7 @@ const cors=require("cors");
 const morgan = require('morgan');
 
 //User defined class for API response
-const ApiResponse=require("./utils/ApiResponse")
+const ApiResponse=require("./utils/ApiResponse.js")
 
 //Middlewares
 //middleware to establish the request connection from other port or origin 
@@ -54,6 +54,6 @@ app.use((error,req,res,next)=>{
 })
 
 //invoke the cron-jobs
-require("./utils/cronJobs")
+require("./utils/cronJobs.js")
 
 module.exports=app;

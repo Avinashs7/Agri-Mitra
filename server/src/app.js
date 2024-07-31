@@ -42,6 +42,10 @@ app.use("/solution",solutionRouter)
 const predictionRoute=require("./routes/prediction.route")
 app.use("/predict",predictionRoute)
 
+app.get("/",(req,res)=>{
+    return res.send({message:"I am here"});
+})
+
 //The last middlewaree to be used, because this is a general error handling middleware if the response isn't ended anywhere the above it will return the error here
 app.use((error,req,res,next)=>{
     console.error(error)

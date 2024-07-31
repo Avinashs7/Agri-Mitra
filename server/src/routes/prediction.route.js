@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const { predictCrop,getPredictedCrop } = require("../controllers/predict.controller")
+const { predictCrop,getPredictedCrop } = require("../controllers/predict.controller.js")
 const router=Router()
 
 //This route will handle the model prediction output processing and yet to be developed

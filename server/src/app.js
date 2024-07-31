@@ -24,22 +24,22 @@ app.use(morgan('dev'));
 
 
 //REST API Endpoints are defined in the below routers
-const userRouter=require("./routes/user.routes")
+const userRouter=require("./routes/user.routes.js")
 app.use("/user",userRouter)
 
-const issueRouter=require("./routes/Issues.routes")
+const issueRouter=require("./routes/Issues.routes.js")
 app.use("/issue",issueRouter)
 
-const reportRouter=require("./routes/report.route")
+const reportRouter=require("./routes/report.route.js")
 app.use("/report",reportRouter)
 
-const farmRouter=require("./routes/farm.route")
+const farmRouter=require("./routes/farm.route.js")
 app.use("/farm",farmRouter)
 
-const solutionRouter=require("./routes/solutions.route")
+const solutionRouter=require("./routes/solutions.route.js")
 app.use("/solution",solutionRouter)
 
-const predictionRoute=require("./routes/prediction.route")
+const predictionRoute=require("./routes/prediction.route.js")
 app.use("/predict",predictionRoute)
 
 app.get("/",(req,res)=>{

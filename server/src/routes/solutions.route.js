@@ -1,8 +1,8 @@
 const {Router}=require("express")
 const router=Router()
-const verifyJWT=require("../middlewares/auth")
-const {addSolution, addUpvote,fetchAllSolution}=require("../controllers/solutions.controller")
-const {upload}=require("../middlewares/multer.middleware")
+const verifyJWT=require("../middlewares/auth.js")
+const {addSolution, addUpvote,fetchAllSolution}=require("../controllers/solutions.controller.js")
+const {upload}=require("../middlewares/multer.middleware.js")
 
 //Route to answer to any user problem and you can provide photos as proof
 router.route("/add/:issueId").post(verifyJWT,

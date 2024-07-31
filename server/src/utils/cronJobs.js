@@ -1,5 +1,5 @@
 const cron=require("node-cron")
-const {deleteOtp}=require("../controllers/user.controller");
+const {deleteOtp}=require("../controllers/user.controller.js");
 
 /**
  * Background process which needs to be handled when server is up after certain time 

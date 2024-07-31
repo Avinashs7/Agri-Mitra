@@ -1,7 +1,7 @@
 const {Router}=require("express")
 const router=Router()
-const {addFarm,getFarms}=require("../controllers/farm.controller")
-const verifyJWT=require("../middlewares/auth")
+const {addFarm,getFarms}=require("../controllers/farm.controller.js")
+const verifyJWT=require("../middlewares/auth.js")
 
 //This route is to add up the farms of the user
 router.route("/add").post(verifyJWT,addFarm)

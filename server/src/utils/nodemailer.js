@@ -1,7 +1,7 @@
 const nodemailer=require("nodemailer")
-const User = require("../models/User.model");
-const ApiError = require("./ApiError");
-const Otp=require("../models/Otp.model")
+const User = require("../models/User.model.js");
+const ApiError = require("./ApiError.js");
+const Otp=require("../models/Otp.model.js")
 
 /**
  * Nodemailer transporter is to config the mail carrier  

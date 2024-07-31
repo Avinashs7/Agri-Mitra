@@ -1,7 +1,7 @@
-const ApiError = require("../utils/ApiError");
-const ApiResponse = require("../utils/ApiResponse");
-const asyncHandler = require("../utils/asyncHandler");
-const Prediction=require("../models/Prediction.model")
+const ApiError = require("../utils/ApiError.js");
+const ApiResponse = require("../utils/ApiResponse.js");
+const asyncHandler = require("../utils/asyncHandler.js");
+const Prediction=require("../models/Prediction.model.js")
 const axios=require("axios")
 
 

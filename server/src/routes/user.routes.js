@@ -1,8 +1,8 @@
 const {Router}=require("express");
 const router=Router();
-const {registerUser, loginUser,verifyOtp,getUser,logout}=require("../controllers/user.controller")
-const {upload}=require("../middlewares/multer.middleware");
-const verifyJWT = require("../middlewares/auth");
+const {registerUser, loginUser,verifyOtp,getUser,logout}=require("../controllers/user.controller.js")
+const {upload}=require("../middlewares/multer.middleware.js");
+const verifyJWT = require("../middlewares/auth.js");
 
 //Route to handle signup takes in email,firstName,lastName,phone number,gender and stores it also email verification logic is implemented
 router.route("/register").post(upload.single("avatar"),registerUser)

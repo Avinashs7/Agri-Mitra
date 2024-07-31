@@ -1,9 +1,9 @@
 require("dotenv").config()
 
-const {connectDB}=require("./db/config");
+const {connectDB}=require("./db/config.js");
 const app=require("./app.js")
 const PORT=process.env.PORT||8080;
-const {logger}=require("../src/utils/logger")
+const {logger}=require("../src/utils/logger.js")
 
 //DB connection logic 
 connectDB()

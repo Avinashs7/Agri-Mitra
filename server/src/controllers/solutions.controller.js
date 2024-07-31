@@ -1,8 +1,8 @@
-const ApiError = require("../utils/ApiError");
-const asyncHandler = require("../utils/asyncHandler");
-const uploadToCloudinary=require("../utils/cloudinary")
-const Solution=require("../models/Solutions.model");
-const ApiResponse = require("../utils/ApiResponse");
+const ApiError = require("../utils/ApiError.js");
+const asyncHandler = require("../utils/asyncHandler.js");
+const uploadToCloudinary=require("../utils/cloudinary.js")
+const Solution=require("../models/Solutions.model.js");
+const ApiResponse = require("../utils/ApiResponse.js");
 
 const addSolution=asyncHandler(async(req,res)=>{
     const issueId=req.params?.issueId;

@@ -1,8 +1,8 @@
-const asyncHandler=require("../utils/asyncHandler")
-const ApiError=require("../utils/ApiError")
-const ApiResponse=require("../utils/ApiResponse")
-const Issues=require("../models/Issues.model")
-const uploadToCloudinary=require("../utils/cloudinary")
+const asyncHandler=require("../utils/asyncHandler.js")
+const ApiError=require("../utils/ApiError.js")
+const ApiResponse=require("../utils/ApiResponse.js")
+const Issues=require("../models/Issues.model.js")
+const uploadToCloudinary=require("../utils/cloudinary.js")
 
 /***
  * Issues are the challenges farmers has come acrossed and they can post it using the platform

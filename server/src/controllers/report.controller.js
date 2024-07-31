@@ -1,7 +1,7 @@
-const ApiError = require("../utils/ApiError");
-const asyncHandler = require("../utils/asyncHandler");
-const Report=require("../models/Report.model");
-const ApiResponse = require("../utils/ApiResponse");
+const ApiError = require("../utils/ApiError.js");
+const asyncHandler = require("../utils/asyncHandler.js");
+const Report=require("../models/Report.model.js");
+const ApiResponse = require("../utils/ApiResponse.js");
 
 const addReport=asyncHandler(async(req,res)=>{
     const {

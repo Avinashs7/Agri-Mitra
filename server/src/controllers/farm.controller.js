@@ -1,7 +1,7 @@
-const ApiError = require("../utils/ApiError");
-const ApiResponse = require("../utils/ApiResponse");
-const asyncHandler = require("../utils/asyncHandler");
-const Farm=require("../models/Farm.model")
+const ApiError = require("../utils/ApiError.js");
+const ApiResponse = require("../utils/ApiResponse.js");
+const asyncHandler = require("../utils/asyncHandler.js");
+const Farm=require("../models/Farm.model.js")
 
 /**
  * Store a farmland details 

@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-const serverUrl = process.env.VITE_SERVER_URL || 'http://localhost:8000';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,7 +7,7 @@ export default defineConfig({
   server:{
     proxy: {
       '/api': {
-        target: serverUrl,
+        target: 'https://agri-mitra-server-git-main-avinash-ss-projects-0c8e04fd.vercel.app/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

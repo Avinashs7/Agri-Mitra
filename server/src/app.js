@@ -27,7 +27,7 @@ app.use(morgan('dev'));
 const userRouter=require("./routes/user.routes.js")
 app.use("/user",userRouter)
 
-const issueRouter=require("./routes/Issues.routes.js")
+const issueRouter=require("./routes/issues.routes.js")
 app.use("/issue",issueRouter)
 
 const reportRouter=require("./routes/report.route.js")

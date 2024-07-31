@@ -24,7 +24,7 @@ const FarmDetail = () => {
         const accessToken=localStorage.getItem("accessToken");
         if(!accessToken)
             navigate("/login")
-        await axios.post(`http://localhost:8000/predict/crop/${reportId}`,farmReport,{headers:{
+        await axios.post(`/api/predict/crop/${reportId}`,farmReport,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{
@@ -34,7 +34,7 @@ const FarmDetail = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         const accessToken=localStorage.getItem("accessToken");
-        await axios.post(`http://localhost:8000/report/add/${farmId}`,farmReport,{
+        await axios.post(`/api/report/add/${farmId}`,farmReport,{
             headers:{
                 Authorization:`Bearer ${accessToken}`
             }
@@ -49,7 +49,7 @@ const FarmDetail = () => {
     }
     const fetchPrediction=async(reportId)=>{
         const accessToken=localStorage.getItem("accessToken");
-        await axios.get(`http://localhost:8000/predict/get/${reportId}`,{headers:{
+        await axios.get(`/api/predict/get/${reportId}`,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{
@@ -64,7 +64,7 @@ const FarmDetail = () => {
     }
     const fetchFarmDetails=async()=>{
         const accessToken=localStorage.getItem("accessToken");
-        await axios.get(`http://localhost:8000/report/get/${farmId}`,{headers:{
+        await axios.get(`/api/report/get/${farmId}`,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{

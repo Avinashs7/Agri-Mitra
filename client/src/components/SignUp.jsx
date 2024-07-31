@@ -13,7 +13,7 @@ const SignUp = () => {
         for(const key in signUpDetails){
             formData.append(key,signUpDetails[key]);
         }
-        await axios.post("http://localhost:8000/user/register",formData,{headers:{
+        await axios.post(`/api/user/register`,formData,{headers:{
             'Content-Type': 'multipart/form-data',
           }})
         .then((data)=>{

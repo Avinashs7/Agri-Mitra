@@ -14,7 +14,7 @@ const Farms = () => {
       const accessToken=localStorage.getItem("accessToken")
       if(!accessToken)
         navigate("/login");
-      await axios.get("http://localhost:8000/farm/getFarms",{headers:{
+      await axios.get(`/api/farm/getFarms`,{headers:{
         Authorization:`Bearer ${accessToken}`
       }})
       .then((data)=>{

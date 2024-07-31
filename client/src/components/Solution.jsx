@@ -3,6 +3,7 @@ import logo from '../images/Logo.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
+
 const   Solution = () => {
   const {issueId}=useParams();
   const [solution,setSolution]=useState();
@@ -11,7 +12,7 @@ const   Solution = () => {
     const accessToken=localStorage.getItem('accessToken');
     if(!accessToken)
       navigate("/login")
-    await axios.post(`http://localhost:8000/solution/add/${issueId}`,solution,{
+    await axios.post(`/api/solution/add/${issueId}`,solution,{
       headers:{
         Authorization:`Bearer ${accessToken}`
       }

@@ -8,6 +8,8 @@ import 'react-phone-input-2/lib/style.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
+
 const Otp = () => {
     const [otp, setOtp] = useState("")
     const [loading, setLoading] = useState("")
@@ -19,7 +21,7 @@ const Otp = () => {
     const verifyOtp=async(e)=>{
         e.preventDefault();
         if(state?.id!==undefined){
-            await axios.post(`http://localhost:8000/user/verify/${state?.id}`,{otp:otp})
+            await axios.post(`${SERVER_URL}/user/verify/${state?.id}`,{otp:otp})
             .then(()=>{
                 navigate("/login");
             })

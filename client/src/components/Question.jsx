@@ -12,7 +12,7 @@ const Question = () => {
         const accessToken=localStorage.getItem("accessToken");
         if(!accessToken)
             navigate("/login");
-        await axios.post(`http://localhost:8000/issue/add/${farmId}`,issue,{headers:{
+        await axios.post(`/api/issue/add/${farmId}`,issue,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{

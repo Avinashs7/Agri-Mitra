@@ -9,7 +9,7 @@ const Login = ({setUser}) => {
     const loginUser=async(e)=>{
         e.preventDefault();
         try{
-            const data=await axios.post("http://localhost:8000/user/login",loginDetails)
+            const data=await axios.post(`/api/user/login`,loginDetails)
             const userData=data?.data?.data;
             // console.log(userData?.accessToken)
             const fullName=userData?.firstName+" "+userData?.lastName;

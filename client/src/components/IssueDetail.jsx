@@ -10,7 +10,7 @@ const IssueDetail = () => {
   const [solution,setSolution]=useState();
   const {issueId}=useParams();
   const fetchSolution=async(issueId,accessToken)=>{
-    await axios.get(`http://localhost:8000/solution/allSolution/${issueId}`,{headers:{
+    await axios.get(`/api/solution/allSolution/${issueId}`,{headers:{
       Authorization:`Bearer ${accessToken}`
     }})
     .then((data)=>{
@@ -22,7 +22,7 @@ const IssueDetail = () => {
   }
   const fetchIssue=async()=>{
     const accessToken=localStorage.getItem("accessToken")
-    await axios.get(`http://localhost:8000/issue/getIssue/${issueId}`,{headers:{
+    await axios.get(`/api/getIssue/${issueId}`,{headers:{
       Authorization:`Bearer ${accessToken}`
     }})
     .then((data)=>{

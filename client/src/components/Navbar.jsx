@@ -12,7 +12,7 @@ import axios from 'axios';
 const Navibar = ({user}) => {
   const [isOpen, setIsOpen] = useState(false)
   const logout=async()=>{
-    await axios.get("http://localhost:8000/user/logout")
+    await axios.get(`/api/user/logout`)
     .then((data)=>{
       if(data?.data?.success){
         localStorage.clear();

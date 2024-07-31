@@ -24,7 +24,7 @@ const FarmModal = ({onClose,details={}}) => {
         e.preventDefault();
         const accessToken=localStorage.getItem("accessToken");
         if(accessToken){
-            await axios.post("http://localhost:8000/farm/add",farmDetails,{headers:{
+            await axios.post(`/api/farm/add`,farmDetails,{headers:{
                 Authorization:`Bearer ${accessToken}`
             }}).then((data)=>{
                 onClose()

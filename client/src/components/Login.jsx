@@ -11,7 +11,7 @@ const Login = ({setUser}) => {
     const loginUser=async(e)=>{
         e.preventDefault();
         try{
-            const data=await axios.post(`api/user/login`,loginDetails)
+            const data=await axios.post(`/api/user/login`,loginDetails)
             const userData=data?.data?.data;
             // console.log(userData?.accessToken)
             const fullName=userData?.firstName+" "+userData?.lastName;
@@ -27,6 +27,10 @@ const Login = ({setUser}) => {
     const updateLoginDetails=(e)=>{
         setLoginDetails({...loginDetails,[e.target.name]:e.target.value});
     }
+    axios.interceptors.request.use(request=>{
+        console.log('Starting request',request);
+        return request;
+    })
   return (
     <div style={{backgroundImage: `url(${farmland})`}} className='h-[90vh] flex flex-col items-center justify-center bg-repeat-round'>
         <div className='h-[350px] bg-blue-600/20 border border-gray-300 backdrop-blur-lg px-6 w-96 text-white'>

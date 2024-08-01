@@ -69,7 +69,7 @@ const registerUser=AsyncHandler(async (req,res)=>{
     // console.log(req.file)
     const avatarLocalPath=req.file?.path;
 
-    const avatar=null;
+    let avatar=null;
     
     if(avatarLocalPath){
         // throw new ApiError(400,"Avatar field is empty");

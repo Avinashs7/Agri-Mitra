@@ -7,7 +7,7 @@ const Issues = () => {
     const navigate=useNavigate();
     const [issues,setIssues]=useState();
     const fetchIssues=async(accessToken)=>{
-        await axios.get(`/api/allIssues`,{headers:{
+        await axios.get(`/api/issue/allIssues`,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{

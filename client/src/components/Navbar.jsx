@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
-import logo from '../images/Logo.jpg'
 import agri from '../images/agri.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios';

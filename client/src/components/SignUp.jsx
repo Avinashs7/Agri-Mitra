@@ -29,7 +29,7 @@ const SignUp = () => {
         setsignUpDetails({...signUpDetails,[e.target.name]:e.target.value})
     }
   return (
-    <div className='h-[90vh] flex flex-col items-center justify-center bg-background bg-repeat-round'>
+    <div className='h-[90vh] flex flex-col items-center justify-center bg-farmland bg-repeat-round'>
         <div className='h-[600px] bg-blue-600/20 border border-blue-300 backdrop-blur-lg px-6 w-96   '>
             <div>
                 <h1 className='text-3xl font-bold pb-6 pt-6 text-center text-white'>Sign Up</h1>

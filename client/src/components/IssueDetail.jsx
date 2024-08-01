@@ -22,7 +22,7 @@ const IssueDetail = () => {
   }
   const fetchIssue=async()=>{
     const accessToken=localStorage.getItem("accessToken")
-    await axios.get(`/api/getIssue/${issueId}`,{headers:{
+    await axios.get(`/api/issue/getIssue/${issueId}`,{headers:{
       Authorization:`Bearer ${accessToken}`
     }})
     .then((data)=>{

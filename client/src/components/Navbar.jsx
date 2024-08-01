@@ -3,7 +3,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
 import agri from '../images/agri.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
@@ -11,12 +11,13 @@ const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
 const Navibar = ({user}) => {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate=useNavigate();
   const logout=async()=>{
     await axios.get(`${SERVER_URL}/user/logout`)
     .then((data)=>{
       if(data?.data?.success){
         localStorage.clear();
-        window.location.reload();
+        navigate('/');
       }
     })
     .catch(err=>{

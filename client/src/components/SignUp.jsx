@@ -53,10 +53,10 @@ const SignUp = () => {
                         <input type='number' name='phone' className='border border-gray-300 w-full rounded-full px-4 py-2 my-2 bg-transparent' placeholder='Phone Number' onChange={updateSignUpDetails}/>
                         <FaPhoneAlt className='absolute top-[35%] right-3 text-white'/>
                     </div>
-                    <div className='w-full relative'>
+                    {/* <div className='w-full relative'>
                         <input type='file' name='avatar' className='border border-gray-300 w-full rounded-full px-4 py-2 my-2 bg-transparent' onChange={(e)=>setsignUpDetails({...signUpDetails,[e.target.name]:e.target.files[0]})}/>
                         <FaPhoneAlt className='absolute top-[35%] right-3 text-white'/>
-                    </div>
+                    </div> */}
                     <div className='w-full relative'>
                         <select name='gender' className="border border-gray-300 w-full rounded-2xl px-4 py-2 my-2 bg-transparent" onChange={updateSignUpDetails}>
                             <option value=''>Gender</option>

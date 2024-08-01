@@ -37,7 +37,7 @@ const predictCrop=asyncHandler(async(req,res)=>{
             throw new ApiError(406,"All fields are required to predict a crop");
     }));
 
-    await axios.post("http://127.0.0.1:8001/predict",{N,P,K,temperature,humidity,ph,rainfall})
+    await axios.post("https://agri-mitra-ml-model.vercel.app/predict",{N,P,K,temperature,humidity,ph,rainfall})
     .then((response)=>{
         async function storeAndRespond(){
             const prediction=await storePrediction(response?.data,id)

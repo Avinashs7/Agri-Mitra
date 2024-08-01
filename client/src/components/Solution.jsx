@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import logo from '../images/Logo.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
 
 const   Solution = () => {
@@ -12,7 +13,7 @@ const   Solution = () => {
     const accessToken=localStorage.getItem('accessToken');
     if(!accessToken)
       navigate("/login")
-    await axios.post(`/api/solution/add/${issueId}`,solution,{
+    await axios.post(`${SERVER_URL}/solution/add/${issueId}`,solution,{
       headers:{
         Authorization:`Bearer ${accessToken}`
       }

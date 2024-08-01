@@ -10,6 +10,7 @@ import { FaHome } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoMdCall } from "react-icons/io";
 
+
 const Footer = () => {
   return (
     <div>

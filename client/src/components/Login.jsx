@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from 'axios';
 import farmland from '../images/background.png'
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
 
 const Login = ({setUser}) => {
@@ -11,7 +12,7 @@ const Login = ({setUser}) => {
     const loginUser=async(e)=>{
         e.preventDefault();
         try{
-            const data=await axios.post(`/api/user/login`,loginDetails)
+            const data=await axios.post(`${SERVER_URL}/user/login`,loginDetails)
             const userData=data?.data?.data;
             // console.log(userData?.accessToken)
             const fullName=userData?.firstName+" "+userData?.lastName;

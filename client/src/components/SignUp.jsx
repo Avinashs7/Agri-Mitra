@@ -4,6 +4,8 @@ import { MdOutlineMail } from "react-icons/md";
 import { FaUserAlt, FaLock, FaPhoneAlt } from "react-icons/fa";
 import axios from 'axios'
 import farmland from '../images/background.png'
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
+
 
 const SignUp = () => {
     const navigate=useNavigate();
@@ -14,7 +16,7 @@ const SignUp = () => {
         for(const key in signUpDetails){
             formData.append(key,signUpDetails[key]);
         }
-        await axios.post(`/api/user/register`,formData,{headers:{
+        await axios.post(`${SERVER_URL}/user/register`,formData,{headers:{
             'Content-Type': 'multipart/form-data',
           }})
         .then((data)=>{

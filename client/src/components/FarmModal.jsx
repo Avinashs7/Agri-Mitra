@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
 
 const FarmModal = ({onClose,details={}}) => {
@@ -24,7 +25,7 @@ const FarmModal = ({onClose,details={}}) => {
         e.preventDefault();
         const accessToken=localStorage.getItem("accessToken");
         if(accessToken){
-            await axios.post(`/api/farm/add`,farmDetails,{headers:{
+            await axios.post(`${SERVER_URL}/farm/add`,farmDetails,{headers:{
                 Authorization:`Bearer ${accessToken}`
             }}).then((data)=>{
                 onClose()

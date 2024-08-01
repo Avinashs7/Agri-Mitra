@@ -4,6 +4,8 @@ import FarmModal from './FarmModal';
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
+
 
 const Farms = () => {
   const navigate=useNavigate();
@@ -14,7 +16,7 @@ const Farms = () => {
       const accessToken=localStorage.getItem("accessToken")
       if(!accessToken)
         navigate("/login");
-      await axios.get(`/api/farm/getFarms`,{headers:{
+      await axios.get(`${SERVER_URL}/farm/getFarms`,{headers:{
         Authorization:`Bearer ${accessToken}`
       }})
       .then((data)=>{

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../images/Logo.jpg'
 import axios from 'axios';
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
+
 
 const Issues = () => {
     const navigate=useNavigate();
     const [issues,setIssues]=useState();
     const fetchIssues=async(accessToken)=>{
-        await axios.get(`/api/issue/allIssues`,{headers:{
+        await axios.get(`${SERVER_URL}/issue/allIssues`,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{

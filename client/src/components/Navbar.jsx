@@ -5,13 +5,14 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import agri from '../images/agri.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
 
 
 const Navibar = ({user}) => {
   const [isOpen, setIsOpen] = useState(false)
   const logout=async()=>{
-    await axios.get(`/api/user/logout`)
+    await axios.get(`${SERVER_URL}/user/logout`)
     .then((data)=>{
       if(data?.data?.success){
         localStorage.clear();

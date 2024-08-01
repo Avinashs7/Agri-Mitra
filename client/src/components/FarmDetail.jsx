@@ -9,6 +9,7 @@ import pH from '../images/pH.png'
 import pressure from '../images/pressure.png'
 import humidity from '../images/humidity.png'
 import axios from 'axios'
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
 const FarmDetail = () => {
     const [farmReport,setFarmReport]=useState();
@@ -24,7 +25,7 @@ const FarmDetail = () => {
         const accessToken=localStorage.getItem("accessToken");
         if(!accessToken)
             navigate("/login")
-        await axios.post(`/api/predict/crop/${reportId}`,farmReport,{headers:{
+        await axios.post(`${SERVER_URL}/predict/crop/${reportId}`,farmReport,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{
@@ -34,7 +35,7 @@ const FarmDetail = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         const accessToken=localStorage.getItem("accessToken");
-        await axios.post(`/api/report/add/${farmId}`,farmReport,{
+        await axios.post(`${SERVER_URL}/report/add/${farmId}`,farmReport,{
             headers:{
                 Authorization:`Bearer ${accessToken}`
             }
@@ -49,7 +50,7 @@ const FarmDetail = () => {
     }
     const fetchPrediction=async(reportId)=>{
         const accessToken=localStorage.getItem("accessToken");
-        await axios.get(`/api/predict/get/${reportId}`,{headers:{
+        await axios.get(`${SERVER_URL}/predict/get/${reportId}`,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{
@@ -64,7 +65,7 @@ const FarmDetail = () => {
     }
     const fetchFarmDetails=async()=>{
         const accessToken=localStorage.getItem("accessToken");
-        await axios.get(`/api/report/get/${farmId}`,{headers:{
+        await axios.get(`${SERVER_URL}/report/get/${farmId}`,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{

@@ -3,6 +3,7 @@ import logo from '../images/Logo.jpg'
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useParams,Link } from 'react-router-dom';
 import axios from 'axios'
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
 
 
 const IssueDetail = () => {
@@ -10,7 +11,7 @@ const IssueDetail = () => {
   const [solution,setSolution]=useState();
   const {issueId}=useParams();
   const fetchSolution=async(issueId,accessToken)=>{
-    await axios.get(`/api/solution/allSolution/${issueId}`,{headers:{
+    await axios.get(`${SERVER_URL}/solution/allSolution/${issueId}`,{headers:{
       Authorization:`Bearer ${accessToken}`
     }})
     .then((data)=>{
@@ -22,7 +23,7 @@ const IssueDetail = () => {
   }
   const fetchIssue=async()=>{
     const accessToken=localStorage.getItem("accessToken")
-    await axios.get(`/api/issue/getIssue/${issueId}`,{headers:{
+    await axios.get(`${SERVER_URL}/issue/getIssue/${issueId}`,{headers:{
       Authorization:`Bearer ${accessToken}`
     }})
     .then((data)=>{

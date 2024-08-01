@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { FiPlus } from "react-icons/fi";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
+const SERVER_URL=import.meta.env.VITE_SERVER_URL;
+
 
 const Question = () => {
     const {farmId}=useParams();
@@ -12,13 +14,13 @@ const Question = () => {
         const accessToken=localStorage.getItem("accessToken");
         if(!accessToken)
             navigate("/login");
-        await axios.post(`/api/issue/add/${farmId}`,issue,{headers:{
+        await axios.post(`${SERVER_URL}/issue/add/${farmId}`,issue,{headers:{
             Authorization:`Bearer ${accessToken}`
         }})
         .then((data)=>{
             if(data?.data?.success){
                 console.log(data?.data)
-                navigate(`/issueDetail/${data?.data?.data?._id}`);
+                navigate(`${SERVER_URL}/issue/issueDetail/${data?.data?.data?._id}`);
             }
         })
         .catch((err)=>{

@@ -69,13 +69,16 @@ const registerUser=AsyncHandler(async (req,res)=>{
     // console.log(req.file)
     const avatarLocalPath=req.file?.path;
 
-    if(!avatarLocalPath){
-        throw new ApiError(400,"Avatar field is empty");
+    if(avatarLocalPath){
+        // throw new ApiError(400,"Avatar field is empty");
+        const avatar=await uploadToCloudinary(avatarLocalPath);
     }
 
-    const avatar=await uploadToCloudinary(avatarLocalPath);
-
-    if(!avatar)throw new ApiError(409,"Avatar is not uploaded successfully");
+    if(!avatar)
+        avatar={
+            url:"https://res.cloudinary.com/dbktadldz/image/upload/v1721793022/zliowyqd8nbnbsdbschi.png"
+        }
+        // throw new ApiError(409,"Avatar is not uploaded successfully");
 
     const user=await User.create({
         firstName,

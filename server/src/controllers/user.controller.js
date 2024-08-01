@@ -69,9 +69,11 @@ const registerUser=AsyncHandler(async (req,res)=>{
     // console.log(req.file)
     const avatarLocalPath=req.file?.path;
 
+    const avatar=null;
+    
     if(avatarLocalPath){
         // throw new ApiError(400,"Avatar field is empty");
-        const avatar=await uploadToCloudinary(avatarLocalPath);
+        avatar=await uploadToCloudinary(avatarLocalPath);
     }
 
     if(!avatar){

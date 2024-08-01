@@ -9,7 +9,10 @@ const ApiResponse=require("./utils/ApiResponse.js")
 //Middlewares
 //middleware to establish the request connection from other port or origin 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:[
+        process.env.CORS_ORIGIN,
+        'http://localhost:5174'
+    ],
     credentials:true,
 }));
 //JSON input accepting middleware and the form can be upto 16kb 

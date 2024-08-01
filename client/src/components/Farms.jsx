@@ -52,8 +52,8 @@ const Farms = () => {
           </Link>
         ))
       ) : ( 
-        <div>
-          <p>No farms registered by the user</p>
+        <div className='text-2xl font-bold flex flex-row justify-center mt-52'>
+          <h3 className='text-red-500'>No farms registered by the user</h3>
         </div>
       )}
       {

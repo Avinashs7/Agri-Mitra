@@ -20,7 +20,7 @@ const Question = () => {
         .then((data)=>{
             if(data?.data?.success){
                 console.log(data?.data)
-                navigate(`${SERVER_URL}/issue/issueDetail/${data?.data?.data?._id}`);
+                navigate(`/issueDetail/${data?.data?.data?._id}`);
             }
         })
         .catch((err)=>{

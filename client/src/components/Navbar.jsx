@@ -17,7 +17,6 @@ const Navibar = ({user}) => {
     .then((data)=>{
       if(data?.data?.success){
         localStorage.clear();
-        window.location.reload();
         navigate('/');
       }
     })

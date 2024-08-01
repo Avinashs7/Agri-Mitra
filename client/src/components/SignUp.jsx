@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineMail } from "react-icons/md";
 import { FaUserAlt, FaLock, FaPhoneAlt } from "react-icons/fa";
 import axios from 'axios'
+import farmland from '../images/background.png'
 
 const SignUp = () => {
     const navigate=useNavigate();
@@ -29,7 +30,7 @@ const SignUp = () => {
         setsignUpDetails({...signUpDetails,[e.target.name]:e.target.value})
     }
   return (
-    <div className='h-[90vh] flex flex-col items-center justify-center bg-farmland bg-repeat-round'>
+    <div style={{backgroundImage: `url(${farmland})`}} className='h-[90vh] flex flex-col items-center justify-center bg-repeat-round'>
         <div className='h-[600px] bg-blue-600/20 border border-blue-300 backdrop-blur-lg px-6 w-96   '>
             <div>
                 <h1 className='text-3xl font-bold pb-6 pt-6 text-center text-white'>Sign Up</h1>

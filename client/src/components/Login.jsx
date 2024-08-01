@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from 'axios';
+import farmland from '../images/background.png'
+
 
 const Login = ({setUser}) => {
     const [loginDetails,setLoginDetails]=useState({});
@@ -26,7 +28,7 @@ const Login = ({setUser}) => {
         setLoginDetails({...loginDetails,[e.target.name]:e.target.value});
     }
   return (
-    <div className='h-[90vh] flex flex-col items-center justify-center bg-farmland bg-repeat-round'>
+    <div style={{backgroundImage: `url(${farmland})`}} className='h-[90vh] flex flex-col items-center justify-center bg-repeat-round'>
         <div className='h-[350px] bg-blue-600/20 border border-gray-300 backdrop-blur-lg px-6 w-96 text-white'>
             {/* Login Form  */}
             <div>

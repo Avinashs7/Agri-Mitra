@@ -43,7 +43,7 @@ const generateOtp=async(userId,length=6)=>{
     .replace(/\D/g, '');
     // Ensure the OTP has the desired length by truncating or padding with zeros if necessary
     const generatedOtp = otp.substring(0, length).padEnd(length, '0');
-    await sendValidationMail(userId,generatedOtp);
+    sendValidationMail(userId,generatedOtp);
 }
 
 const registerUser=AsyncHandler(async (req,res)=>{
@@ -94,7 +94,7 @@ const registerUser=AsyncHandler(async (req,res)=>{
     })
 
     if(!user)throw new ApiError(500,"Server error while creating new user");
-    await generateOtp(user._id);
+    generateOtp(user._id);
     return res.status(201).json(new ApiResponse(200,user,"User created successfully"));
 })
 

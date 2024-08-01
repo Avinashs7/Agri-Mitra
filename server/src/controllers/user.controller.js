@@ -56,10 +56,10 @@ const registerUser=AsyncHandler(async (req,res)=>{
         gender,
     }=req.body;
     
-    if([email,firstName,lastName,phone,gender].some((field)=>{
-        if(field.trim()==="")
-            throw new ApiError(400,"All fields are required");
-    }));
+    // if([email,firstName,lastName,phone,gender].some((field)=>{
+    //     if(field.trim()==="")
+    //         throw new ApiError(400,"All fields are required");
+    // }));
     
     const existedUser=await User.findOne({
         $or:[{email},{phone}]

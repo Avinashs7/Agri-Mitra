@@ -43,7 +43,7 @@ const generateOtp=async(userId,length=6)=>{
     .replace(/\D/g, '');
     // Ensure the OTP has the desired length by truncating or padding with zeros if necessary
     const generatedOtp = otp.substring(0, length).padEnd(length, '0');
-    sendValidationMail(userId,generatedOtp);
+    await sendValidationMail(userId,generatedOtp);
 }
 
 const registerUser=AsyncHandler(async (req,res)=>{
@@ -74,10 +74,11 @@ const registerUser=AsyncHandler(async (req,res)=>{
         const avatar=await uploadToCloudinary(avatarLocalPath);
     }
 
-    if(!avatar)
+    if(!avatar){
         avatar={
             url:"https://res.cloudinary.com/dbktadldz/image/upload/v1721793022/zliowyqd8nbnbsdbschi.png"
         }
+    }
         // throw new ApiError(409,"Avatar is not uploaded successfully");
 
     const user=await User.create({
@@ -89,8 +90,9 @@ const registerUser=AsyncHandler(async (req,res)=>{
         avatar:avatar?.url,
         gender
     })
+
     if(!user)throw new ApiError(500,"Server error while creating new user");
-    generateOtp(user._id);
+    await generateOtp(user._id);
     return res.status(201).json(new ApiResponse(200,user,"User created successfully"));
 })
 

@@ -3,7 +3,7 @@ const ApiResponse = require("../utils/ApiResponse.js");
 const asyncHandler = require("../utils/asyncHandler.js");
 const Prediction=require("../models/Prediction.model.js")
 const axios=require("axios")
-
+const {logger}=require("../utils/logger.js")
 
 const benefits="The predicted crop benefits both the farmer to increase the yield and also retain the fertility of the soil";
 
@@ -37,7 +37,7 @@ const predictCrop=asyncHandler(async(req,res)=>{
             throw new ApiError(406,"All fields are required to predict a crop");
     }));
 
-    await axios.post("https://agri-mitra-ml-model.vercel.app/predict",{N,P,K,temperature,humidity,ph,rainfall})
+    await axios.post("http://127.0.0.1:8001/predict",{N,P,K,temperature,humidity,ph,rainfall})
     .then((response)=>{
         async function storeAndRespond(){
             const prediction=await storePrediction(response?.data,id)
@@ -48,7 +48,7 @@ const predictCrop=asyncHandler(async(req,res)=>{
         storeAndRespond();
     })
     .catch((err)=>{
-        console.error(err);
+        logger.error(err);
         throw new ApiError(404,"error occured while predicting");
     })
 })
